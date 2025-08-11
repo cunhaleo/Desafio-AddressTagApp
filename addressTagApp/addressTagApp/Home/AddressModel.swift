@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AddressModel {
+struct AddressModel: Decodable {
     let cep: String?
     let logradouro: String?
     let complemento: String?

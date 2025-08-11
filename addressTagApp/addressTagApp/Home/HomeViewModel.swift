@@ -13,12 +13,17 @@ final class HomeViewModel {
     init(address: AddressModel?) {
         self.address = address
     }
-    func getAddressForCep(_ cep: String) {
-        let url = URL(fileURLWithPath: "https://viacep.com.br/ws/\(cep)/json/")
+    func getAddressForCep(_ cep: String, completion: ((AddressModel?) -> ())?) {
+        guard let url = URL(string: "https://viacep.com.br/ws/\(cep)/json/") else { return }
         let urlRequest = URLRequest(url: url)
         
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            
+            if let response = response as? HTTPURLResponse {
+                print("STATUS CODE: ", response.statusCode)
+            }
+            guard let data = data else { return }
+            let address = try? JSONDecoder().decode(AddressModel.self, from: data)
+            completion?(address)
         }.resume()
     }
 }

@@ -70,10 +70,10 @@
 		90767E812E47E9B70091BF62 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				90767E862E4968EE0091BF62 /* AddressModel.swift */,
+				90767E842E4968B80091BF62 /* HomeViewModel.swift */,
 				90767E7D2E47E5FF0091BF62 /* HomeViewController.swift */,
 				90767E7E2E47E5FF0091BF62 /* HomeViewController.xib */,
-				90767E842E4968B80091BF62 /* HomeViewModel.swift */,
-				90767E862E4968EE0091BF62 /* AddressModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";

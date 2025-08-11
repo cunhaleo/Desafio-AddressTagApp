@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="addressTagApp" customModuleProvider="target">
             <connections>
+                <outlet property="buttonSearchAddress" destination="Rgx-Bd-36C" id="pGo-Yu-IRc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,7 +22,21 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0XL-Lt-DaZ">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgx-Bd-36C">
+                            <rect key="frame" x="159" y="362" width="75" height="35"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            <connections>
+                                <action selector="buttonSearchAdress:" destination="-1" eventType="touchUpInside" id="ALV-Dg-Xfo"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="Rgx-Bd-36C" firstAttribute="centerY" secondItem="0XL-Lt-DaZ" secondAttribute="centerY" id="GHj-Mr-czp"/>
+                        <constraint firstItem="Rgx-Bd-36C" firstAttribute="centerX" secondItem="0XL-Lt-DaZ" secondAttribute="centerX" id="SdA-fr-PBq"/>
+                    </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

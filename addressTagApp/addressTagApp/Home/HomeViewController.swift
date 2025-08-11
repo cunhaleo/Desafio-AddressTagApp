@@ -9,6 +9,8 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
+    let homeViewModel = HomeViewModel(address: nil)
+    
     override func viewDidLoad() {
         setupUI()
     }

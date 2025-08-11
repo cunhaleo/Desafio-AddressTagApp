@@ -13,4 +13,13 @@ final class HomeViewModel {
     init(address: AddressModel?) {
         self.address = address
     }
+    func getAddressForCep(_ cep: String) {
+        let url = URL(fileURLWithPath: "https://viacep.com.br/ws/\(cep)/json/")
+        let urlRequest = URLRequest(url: url)
+        
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            
+        }.resume()
+    }
 }
+

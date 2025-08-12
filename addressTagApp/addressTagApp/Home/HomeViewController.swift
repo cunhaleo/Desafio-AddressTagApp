@@ -31,13 +31,12 @@ final class HomeViewController: UIViewController {
         self.view.backgroundColor = .gray
     }
     
-    
     @IBAction func textFieldCepEditingChanged(_ sender: UITextField) {
         self.currentCep = textFieldCep.text ?? ""
     }
     
     @IBAction func textFieldCepEditingDidEnd(_ sender: UITextField) {
-        searchAddressForCep(currentCep) {
+        searchAddressForCurrentCep {
             self.fillTextFieldsFor(address: self.address)
         }
     }
@@ -46,13 +45,13 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction func handleSearchAddress(_ sender: Any) {
-        searchAddressForCep(currentCep) {
+        searchAddressForCurrentCep() {
             self.fillTextFieldsFor(address: self.address)
         }
     }
     
-    private func searchAddressForCep(_ cep: String, completion: (() -> ())?) {
-        homeViewModel.getAddressForCep(currentCep) { 
+    private func searchAddressForCurrentCep(completion: (() -> ())?) {
+        homeViewModel.getAddressForCep(currentCep) {
             self.reloadAddress()
             completion?()
         }

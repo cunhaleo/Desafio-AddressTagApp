@@ -13,7 +13,8 @@ final class HomeViewController: UIViewController {
     private var currentCep: String? = "14021650"
     
     @IBOutlet weak var buttonSearchAddress: UIButton!
-
+    @IBOutlet weak var buttonPrintTag: UIButton!
+    
     override func viewDidLoad() {
         setupUI()
     }
@@ -22,9 +23,12 @@ final class HomeViewController: UIViewController {
         self.view.backgroundColor = .gray
     }
     
-    @IBAction func buttonPrintAdress(_ sender: Any) {
-        
+    @IBAction func handlePrintAddress(_ sender: Any) {
     }
+    
+    @IBAction func handleSearchAddress(_ sender: Any) {
+    }
+    
     
     private func searchAddressForCep(_ cep: String, completion: ((AddressModel) -> ())?) {
         guard let currentCep = currentCep else { return }

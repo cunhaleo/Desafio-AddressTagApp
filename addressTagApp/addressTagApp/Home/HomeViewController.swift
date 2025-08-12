@@ -35,21 +35,31 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction func handleSearchAddress(_ sender: Any) {
+        searchAddressForCep(currentCep ?? "") {
+            self.fillTextFieldsFor(address: self.address)
+        }
     }
     
-    private func searchAddressForCep(_ cep: String, completion: ((AddressModel) -> ())?) {
+    private func searchAddressForCep(_ cep: String, completion: (() -> ())?) {
         guard let currentCep = currentCep else { return }
         homeViewModel.getAddressForCep(currentCep) { 
             self.reloadAddress()
+            completion?()
         }
     }
     
     private func reloadAddress() {
         self.address = homeViewModel.retrieveAddress()
-        fillTextFieldsFor(address: address)
     }
     
     private func fillTextFieldsFor(address: AddressModel?) {
         guard let address = address else { return }
+        DispatchQueue.main.async {
+            self.textFieldState.text = address.estado
+            self.textFieldRegion.text = address.regiao
+            self.textFieldLocation.text = address.localidade
+            self.textFieldLogradouro.text = address.logradouro
+            self.textFieldNeighborhood.text = address.bairro
+        }
     }
 }

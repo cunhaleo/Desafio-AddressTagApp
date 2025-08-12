@@ -9,7 +9,8 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
-    let homeViewModel = HomeViewModel(address: nil)
+    private let homeViewModel = HomeViewModel()
+    private var address: AddressModel?
     private var currentCep: String? = "14021650"
     
     @IBOutlet weak var buttonSearchAddress: UIButton!
@@ -38,14 +39,17 @@ final class HomeViewController: UIViewController {
     
     private func searchAddressForCep(_ cep: String, completion: ((AddressModel) -> ())?) {
         guard let currentCep = currentCep else { return }
-        homeViewModel.getAddressForCep(currentCep) { address in
-            if let address = address {
-                completion?(address)
-            }
+        homeViewModel.getAddressForCep(currentCep) { 
+            self.reloadAddress()
         }
     }
     
-    private func reloadAddress(_ address: AddressModel?) {
-        
+    private func reloadAddress() {
+        self.address = homeViewModel.retrieveAddress()
+        fillTextFieldsFor(address: address)
+    }
+    
+    private func fillTextFieldsFor(address: AddressModel?) {
+        guard let address = address else { return }
     }
 }

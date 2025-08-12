@@ -8,13 +8,13 @@
 import Foundation
 
 final class HomeViewModel {
-    var address : AddressModel?
+    private var address : AddressModel
     
-    init(address: AddressModel?) {
-        self.address = address
+    init() {
+        self.address = AddressModel.fixture()
     }
     
-    func getAddressForCep(_ cep: String, completion: ((AddressModel?) -> ())?) {
+    func getAddressForCep(_ cep: String, completion: (() -> ())?) {
         guard let url = URL(string: "https://viacep.com.br/ws/\(cep)/json/") else { return }
         let urlRequest = URLRequest(url: url)
         
@@ -24,8 +24,15 @@ final class HomeViewModel {
             }
             guard let data = data else { return }
             let address = try? JSONDecoder().decode(AddressModel.self, from: data)
-            completion?(address)
+            if let address = address {
+                self.address = address
+            }
+            completion?()
         }.resume()
+    }
+    
+    func retrieveAddress() -> AddressModel {
+        return address
     }
 }
 

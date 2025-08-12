@@ -68,6 +68,10 @@
                                             <rect key="frame" x="15" y="26.333333333333343" width="323" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="textFieldCepEditingChanged:" destination="-1" eventType="editingChanged" id="PQE-uV-HNG"/>
+                                                <action selector="textFieldCepEditingDidEnd:" destination="-1" eventType="editingDidEnd" id="Ow6-Oj-t2V"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>

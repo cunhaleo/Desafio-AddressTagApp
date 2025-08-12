@@ -11,7 +11,7 @@ final class HomeViewController: UIViewController {
     
     private let homeViewModel = HomeViewModel()
     private var address: AddressModel?
-    private var currentCep: String? = "14021650"
+    private var currentCep: String = ""
     
     @IBOutlet weak var buttonSearchAddress: UIButton!
     @IBOutlet weak var buttonPrintTag: UIButton!
@@ -31,17 +31,27 @@ final class HomeViewController: UIViewController {
         self.view.backgroundColor = .gray
     }
     
+    
+    @IBAction func textFieldCepEditingChanged(_ sender: UITextField) {
+        self.currentCep = textFieldCep.text ?? ""
+    }
+    
+    @IBAction func textFieldCepEditingDidEnd(_ sender: UITextField) {
+        searchAddressForCep(currentCep) {
+            self.fillTextFieldsFor(address: self.address)
+        }
+    }
+    
     @IBAction func handlePrintAddress(_ sender: Any) {
     }
     
     @IBAction func handleSearchAddress(_ sender: Any) {
-        searchAddressForCep(currentCep ?? "") {
+        searchAddressForCep(currentCep) {
             self.fillTextFieldsFor(address: self.address)
         }
     }
     
     private func searchAddressForCep(_ cep: String, completion: (() -> ())?) {
-        guard let currentCep = currentCep else { return }
         homeViewModel.getAddressForCep(currentCep) { 
             self.reloadAddress()
             completion?()

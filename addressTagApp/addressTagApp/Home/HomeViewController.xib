@@ -11,7 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="addressTagApp" customModuleProvider="target">
             <connections>
+                <outlet property="buttonPrintTag" destination="Yly-6Z-HTa" id="Nz2-iU-V36"/>
                 <outlet property="buttonSearchAddress" destination="Rgx-Bd-36C" id="pGo-Yu-IRc"/>
+                <outlet property="textFieldCep" destination="Uu5-16-TfX" id="UuG-nI-Mv7"/>
+                <outlet property="textFieldLocation" destination="RkR-R9-gK1" id="Y8o-5t-Scv"/>
+                <outlet property="textFieldLogradouro" destination="Ebr-KI-DRW" id="TaC-si-Jk2"/>
+                <outlet property="textFieldNeighborhood" destination="jnL-Wg-Ktq" id="J5x-Mg-sP8"/>
+                <outlet property="textFieldRegion" destination="qhk-Ws-PrH" id="IXM-dQ-e9Q"/>
+                <outlet property="textFieldState" destination="WQP-UJ-VQ9" id="OIh-Qa-scx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

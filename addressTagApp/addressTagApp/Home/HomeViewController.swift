@@ -15,6 +15,13 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var buttonSearchAddress: UIButton!
     @IBOutlet weak var buttonPrintTag: UIButton!
     
+    @IBOutlet weak var textFieldCep: UITextField!
+    @IBOutlet weak var textFieldLocation: UITextField!
+    @IBOutlet weak var textFieldLogradouro: UITextField!
+    @IBOutlet weak var textFieldState: UITextField!
+    @IBOutlet weak var textFieldRegion: UITextField!
+    @IBOutlet weak var textFieldNeighborhood: UITextField!
+    
     override func viewDidLoad() {
         setupUI()
     }
@@ -28,7 +35,6 @@ final class HomeViewController: UIViewController {
     
     @IBAction func handleSearchAddress(_ sender: Any) {
     }
-    
     
     private func searchAddressForCep(_ cep: String, completion: ((AddressModel) -> ())?) {
         guard let currentCep = currentCep else { return }

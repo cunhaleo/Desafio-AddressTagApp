@@ -13,6 +13,7 @@ final class HomeViewModel {
     init(address: AddressModel?) {
         self.address = address
     }
+    
     func getAddressForCep(_ cep: String, completion: ((AddressModel?) -> ())?) {
         guard let url = URL(string: "https://viacep.com.br/ws/\(cep)/json/") else { return }
         let urlRequest = URLRequest(url: url)

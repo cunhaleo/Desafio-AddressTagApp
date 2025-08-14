@@ -32,8 +32,11 @@ final class HomeViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = ColorPallete.background
         buttonPrintTag.layer.cornerRadius = 15
+        buttonPrintTag.backgroundColor = .darkGray
         buttonSearchAddress.layer.cornerRadius = 15
+        buttonSearchAddress.backgroundColor = .darkGray
         imageViewLogo.image = ImageAsset.tagLogo
+        
     }
     
     @IBAction func textFieldCepEditingChanged(_ sender: UITextField) {
@@ -47,6 +50,15 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction func handlePrintAddress(_ sender: Any) {
+        updateAddressModel()
+    }
+    
+    private func updateAddressModel() {
+        address?.estado = textFieldState.text
+        address?.regiao = textFieldRegion.text
+        address?.localidade = textFieldLocation.text
+        address?.logradouro = textFieldLogradouro.text
+        address?.bairro = textFieldNeighborhood.text
     }
     
     @IBAction func handleSearchAddress(_ sender: Any) {

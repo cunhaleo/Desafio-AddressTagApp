@@ -23,12 +23,17 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var textFieldRegion: UITextField!
     @IBOutlet weak var textFieldNeighborhood: UITextField!
     
+    @IBOutlet weak var imageViewLogo: UIImageView!
+    
     override func viewDidLoad() {
         setupUI()
     }
     
     private func setupUI() {
-        self.view.backgroundColor = .gray
+        view.backgroundColor = ColorPallete.background
+        buttonPrintTag.layer.cornerRadius = 15
+        buttonSearchAddress.layer.cornerRadius = 15
+        imageViewLogo.image = ImageAsset.tagLogo
     }
     
     @IBAction func textFieldCepEditingChanged(_ sender: UITextField) {

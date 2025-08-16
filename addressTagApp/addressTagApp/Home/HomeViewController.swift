@@ -51,6 +51,7 @@ final class HomeViewController: UIViewController {
     
     @IBAction func handlePrintAddress(_ sender: Any) {
         updateAddressModel()
+        goToTag()
     }
     
     private func updateAddressModel() {
@@ -87,5 +88,12 @@ final class HomeViewController: UIViewController {
             self.textFieldLogradouro.text = address.logradouro
             self.textFieldNeighborhood.text = address.bairro
         }
+    }
+    
+    // MARK: Navigation
+    
+    private func goToTag() {
+        let tagViewController = TagViewController()
+        navigationController?.pushViewController(tagViewController, animated: true)
     }
 }

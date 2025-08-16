@@ -15,6 +15,8 @@
 		90767E852E4968B80091BF62 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90767E842E4968B80091BF62 /* HomeViewModel.swift */; };
 		90767E872E4968EE0091BF62 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90767E862E4968EE0091BF62 /* AddressModel.swift */; };
 		90767E892E4E37890091BF62 /* AssetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90767E882E4E37890091BF62 /* AssetsManager.swift */; };
+		90767E8F2E50FFD00091BF62 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90767E8D2E50FFD00091BF62 /* TagViewController.swift */; };
+		90767E902E50FFD00091BF62 /* TagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90767E8E2E50FFD00091BF62 /* TagViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		90767E842E4968B80091BF62 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		90767E862E4968EE0091BF62 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
 		90767E882E4E37890091BF62 /* AssetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsManager.swift; sourceTree = "<group>"; };
+		90767E8D2E50FFD00091BF62 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		90767E8E2E50FFD00091BF62 /* TagViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 			children = (
 				903AC0812E43E9E80092DEBA /* AppDelegate.swift */,
 				90767E812E47E9B70091BF62 /* Home */,
+				90767E8C2E50FFB00091BF62 /* New Group */,
 				903AC08A2E43E9EB0092DEBA /* Assets.xcassets */,
 				90767E882E4E37890091BF62 /* AssetsManager.swift */,
 				903AC08C2E43E9EB0092DEBA /* LaunchScreen.storyboard */,
@@ -79,6 +84,15 @@
 				90767E7E2E47E5FF0091BF62 /* HomeViewController.xib */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		90767E8C2E50FFB00091BF62 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				90767E8D2E50FFD00091BF62 /* TagViewController.swift */,
+				90767E8E2E50FFD00091BF62 /* TagViewController.xib */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				903AC08E2E43E9EB0092DEBA /* LaunchScreen.storyboard in Resources */,
+				90767E902E50FFD00091BF62 /* TagViewController.xib in Resources */,
 				903AC08B2E43E9EB0092DEBA /* Assets.xcassets in Resources */,
 				90767E802E47E5FF0091BF62 /* HomeViewController.xib in Resources */,
 			);
@@ -155,6 +170,7 @@
 				90767E872E4968EE0091BF62 /* AddressModel.swift in Sources */,
 				903AC0822E43E9E80092DEBA /* AppDelegate.swift in Sources */,
 				90767E852E4968B80091BF62 /* HomeViewModel.swift in Sources */,
+				90767E8F2E50FFD00091BF62 /* TagViewController.swift in Sources */,
 				90767E892E4E37890091BF62 /* AssetsManager.swift in Sources */,
 				90767E7F2E47E5FF0091BF62 /* HomeViewController.swift in Sources */,
 			);

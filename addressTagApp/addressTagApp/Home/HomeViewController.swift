@@ -9,8 +9,8 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
-    private let homeViewModel = HomeViewModel()
-    private var address: AddressModel?
+    private let viewModel: HomeViewModel
+    private var address: AddressModel
     private var currentCep: String = ""
     
     @IBOutlet weak var buttonSearchAddress: UIButton!
@@ -24,6 +24,16 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var textFieldNeighborhood: UITextField!
     
     @IBOutlet weak var imageViewLogo: UIImageView!
+    
+    init(viewModel: HomeViewModel = HomeViewModel(), address: AddressModel = AddressModel.fixture()) {
+        self.viewModel = viewModel
+        self.address = address
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         setupUI()
@@ -55,11 +65,11 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateAddressModel() {
-        address?.estado = textFieldState.text
-        address?.regiao = textFieldRegion.text
-        address?.localidade = textFieldLocation.text
-        address?.logradouro = textFieldLogradouro.text
-        address?.bairro = textFieldNeighborhood.text
+        address.estado = textFieldState.text
+        address.regiao = textFieldRegion.text
+        address.localidade = textFieldLocation.text
+        address.logradouro = textFieldLogradouro.text
+        address.bairro = textFieldNeighborhood.text
     }
     
     @IBAction func handleSearchAddress(_ sender: Any) {
@@ -69,14 +79,14 @@ final class HomeViewController: UIViewController {
     }
     
     private func searchAddressForCurrentCep(completion: (() -> ())?) {
-        homeViewModel.getAddressForCep(currentCep) {
+        viewModel.getAddressForCep(currentCep) {
             self.reloadAddress()
             completion?()
         }
     }
     
     private func reloadAddress() {
-        self.address = homeViewModel.retrieveAddress()
+        self.address = viewModel.retrieveAddress()
     }
     
     private func fillTextFieldsFor(address: AddressModel?) {
@@ -93,7 +103,7 @@ final class HomeViewController: UIViewController {
     // MARK: Navigation
     
     private func goToTag() {
-        let tagViewController = TagViewController()
+        let tagViewController = TagViewController(address: self.address)
         navigationController?.pushViewController(tagViewController, animated: true)
     }
 }

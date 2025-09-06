@@ -12,6 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TagViewController" customModule="addressTagApp" customModuleProvider="target">
             <connections>
+                <outlet property="buttonEdit" destination="T2G-Gw-Tgi" id="2fF-oV-wbi"/>
+                <outlet property="buttonSave" destination="rST-pB-JBv" id="ekh-kt-fuo"/>
+                <outlet property="labelFullAddress" destination="UJI-N1-RZt" id="Mlm-8H-tky"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,7 +27,7 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mth-ld-ps1">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1507.6666666666667"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Etiqueta do endereço:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXf-t8-h3r">
                                     <rect key="frame" x="29.999999999999986" y="30" width="245.66666666666663" height="60"/>
@@ -32,16 +35,15 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJI-N1-RZt">
-                                    <rect key="frame" x="30" y="110" width="333" height="1237.6666666666667"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endereco do usuario aqui" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJI-N1-RZt">
+                                    <rect key="frame" x="30" y="110" width="333" height="20.333333333333343"/>
                                     <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                    <mutableString key="text">Aqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuárioAqui vai a etiqueta contendo o endereço escolhido pelo usuário</mutableString>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="6HG-q1-e1A">
-                                    <rect key="frame" x="40" y="1377.6666666666667" width="313" height="40"/>
+                                    <rect key="frame" x="40" y="629" width="313" height="40"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T2G-Gw-Tgi">
                                             <rect key="frame" x="0.0" y="0.0" width="144" height="40"/>
@@ -49,13 +51,19 @@
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" title="Editar"/>
+                                            <connections>
+                                                <action selector="handleEdit:" destination="-1" eventType="touchUpInside" id="Z6Z-8c-quR"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rST-pB-JBv">
                                             <rect key="frame" x="169" y="0.0" width="144" height="40"/>
                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" title="Novo Endereço"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Salvar"/>
+                                            <connections>
+                                                <action selector="handleSave:" destination="-1" eventType="touchUpInside" id="zB4-os-IdM"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -63,7 +71,7 @@
                                     </constraints>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="6HG-q1-e1A" secondAttribute="trailing" constant="40" id="4nH-cI-kgr"/>
                                 <constraint firstItem="UXf-t8-h3r" firstAttribute="leading" secondItem="Mth-ld-ps1" secondAttribute="leading" constant="30" id="7Mq-jH-RL6"/>
@@ -100,10 +108,10 @@
     </objects>
     <resources>
         <namedColor name="background">
-            <color red="0.792156862745098" green="0.76078431372549016" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.792156862745098" green="0.77916211562796478" blue="0.61326434262176754" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

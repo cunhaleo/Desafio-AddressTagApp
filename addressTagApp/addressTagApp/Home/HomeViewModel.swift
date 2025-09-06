@@ -14,7 +14,7 @@ final class HomeViewModel {
         self.address = AddressModel.fixture()
     }
     
-    func getAddressForCep(_ cep: String, completion: (() -> ())?) {
+    func getAddressForCep(_ cep: String, completion: @escaping (() -> ())) {
         guard let url = URL(string: "https://viacep.com.br/ws/\(cep)/json/") else { return }
         let urlRequest = URLRequest(url: url)
         
@@ -27,7 +27,7 @@ final class HomeViewModel {
             if let address = address {
                 self.address = address
             }
-            completion?()
+            completion()
         }.resume()
     }
     

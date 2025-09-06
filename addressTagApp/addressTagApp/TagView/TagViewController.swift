@@ -34,7 +34,7 @@ final class TagViewController: UIViewController {
     }
     
     @IBAction func handleSave(_ sender: Any) {
-        viewModel.saveAddress(address: textViewFullAddress.text)
+        viewModel.saveAddressInDevice(address: textViewFullAddress.text)
     }
     
     //MARK: - Methods

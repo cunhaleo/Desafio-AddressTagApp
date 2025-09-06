@@ -24,14 +24,14 @@ final class TagViewModel {
         ddd: \(address.ddd ?? ""). Região: \(address.regiao ?? "") (\(address.estado ?? ""))
         """
         }
-        return readAddress()
+        return readAddressInDevice()
     }
     
-    func readAddress() -> String {
+    func readAddressInDevice() -> String {
         db.read()
     }
     
-    func saveAddress(address: String) {
+    func saveAddressInDevice(address: String) {
         db.save(address)
     }
     

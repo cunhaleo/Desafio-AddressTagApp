@@ -24,12 +24,13 @@ final class TagViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         generateFullAddressText()
+        setupUI()
     }
     
     //MARK: - Actions
     
     @IBAction func handleEdit(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        textViewFullAddress.becomeFirstResponder()
     }
     
     @IBAction func handleSave(_ sender: Any) {
@@ -50,4 +51,8 @@ final class TagViewController: UIViewController {
         self.textViewFullAddress.text = viewModel.getFullAddress(for: address)
     }
     
+    private func setupUI() {
+        buttonEdit.layer.cornerRadius = 15
+        buttonSave.layer.cornerRadius = 15
+    }
 }

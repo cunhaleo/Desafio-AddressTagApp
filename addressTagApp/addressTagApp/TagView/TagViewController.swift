@@ -11,9 +11,8 @@ final class TagViewController: UIViewController {
     
     // MARK: - Variables & Attributes
     
-    private let address: AddressModel
+    private let address: AddressModel?
     private let viewModel: TagViewModel
-    private let db: DataManagerProtocol
     
     // MARK: - Outlets
     @IBOutlet weak var textViewFullAddress: UITextView!
@@ -39,7 +38,7 @@ final class TagViewController: UIViewController {
     }
     
     //MARK: - Methods
-    init(viewModel: TagViewModel = TagViewModel(), address: AddressModel) {
+    init(viewModel: TagViewModel = TagViewModel(), address: AddressModel? = nil) {
         self.address = address
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -52,6 +51,7 @@ final class TagViewController: UIViewController {
     private func generateFullAddressText() {
         self.textViewFullAddress.text = viewModel.getFullAddress(for: address)
     }
+    
     
     private func setupUI() {
         buttonEdit.layer.cornerRadius = 15

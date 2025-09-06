@@ -17,12 +17,11 @@ final class DataManager: DataManagerProtocol {
     static let shared = DataManager()
     
     func save(_ object: String) {
-        //code
+        //code CORE DATA
     }
     
     func read() -> String {
         //code
         ""
     }
-    
 }

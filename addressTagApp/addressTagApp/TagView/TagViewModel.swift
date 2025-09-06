@@ -15,12 +15,20 @@ final class TagViewModel {
         self.db = db
     }
     
-    func getFullAddress(for address: AddressModel) -> String {
+    func getFullAddress(for address: AddressModel?) -> String {
+        if let address = address {
+            return
         """
         \(address.logradouro ?? ""), \(address.bairro ?? ""), \(address.localidade ?? "") - \(address.uf ?? "").
         CEP: \(address.cep ?? "")
         ddd: \(address.ddd ?? ""). Região: \(address.regiao ?? "") (\(address.estado ?? ""))
         """
+        }
+        return readAddress()
+    }
+    
+    func readAddress() -> String {
+        db.read()
     }
     
     func saveAddress(address: String) {

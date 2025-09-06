@@ -7,7 +7,13 @@
 
 import Foundation
 
-final class TagViewModel {
+struct TagViewModel {
     
-    
+    func getFullAddress(for address: AddressModel) -> String {
+        """
+        \(address.logradouro ?? ""), \(address.bairro ?? ""), \(address.localidade ?? "") - \(address.uf ?? "").
+        CEP: \(address.cep ?? "")
+        ddd: \(address.ddd ?? ""). Região: \(address.regiao ?? "") (\(address.estado ?? ""))
+        """
+    }
 }

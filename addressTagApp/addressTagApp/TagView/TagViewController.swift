@@ -15,8 +15,7 @@ final class TagViewController: UIViewController {
     private let viewModel: TagViewModel
     
     // MARK: - Outlets
-
-    @IBOutlet weak var labelFullAddress: UILabel!
+    @IBOutlet weak var textViewFullAddress: UITextView!
     @IBOutlet weak var buttonEdit: UIButton!
     @IBOutlet weak var buttonSave: UIButton!
     
@@ -24,12 +23,13 @@ final class TagViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        generateFullAddressText()
     }
     
     //MARK: - Actions
     
     @IBAction func handleEdit(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func handleSave(_ sender: Any) {
@@ -46,6 +46,8 @@ final class TagViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    private func generateFullAddressText() {
+        self.textViewFullAddress.text = viewModel.getFullAddress(for: address)
+    }
     
 }

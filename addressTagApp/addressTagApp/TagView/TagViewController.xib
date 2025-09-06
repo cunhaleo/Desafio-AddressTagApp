@@ -14,7 +14,7 @@
             <connections>
                 <outlet property="buttonEdit" destination="T2G-Gw-Tgi" id="2fF-oV-wbi"/>
                 <outlet property="buttonSave" destination="rST-pB-JBv" id="ekh-kt-fuo"/>
-                <outlet property="labelFullAddress" destination="UJI-N1-RZt" id="Mlm-8H-tky"/>
+                <outlet property="textViewFullAddress" destination="VaY-l3-h27" id="9Az-SI-cg4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,13 +32,6 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Etiqueta do endereço:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXf-t8-h3r">
                                     <rect key="frame" x="29.999999999999986" y="30" width="245.66666666666663" height="60"/>
                                     <fontDescription key="fontDescription" name="NotoNastaliqUrdu-Bold" family="Noto Nastaliq Urdu" pointSize="24"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endereco do usuario aqui" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJI-N1-RZt">
-                                    <rect key="frame" x="30" y="110" width="333" height="20.333333333333343"/>
-                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -70,18 +63,26 @@
                                         <constraint firstAttribute="height" constant="40" id="whE-eM-zzW"/>
                                     </constraints>
                                 </stackView>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VaY-l3-h27">
+                                    <rect key="frame" x="30" y="110" width="333" height="200"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <color key="textColor" systemColor="labelColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="VaY-l3-h27" firstAttribute="top" secondItem="UXf-t8-h3r" secondAttribute="bottom" constant="20" id="3f2-6E-sS7"/>
                                 <constraint firstAttribute="trailing" secondItem="6HG-q1-e1A" secondAttribute="trailing" constant="40" id="4nH-cI-kgr"/>
                                 <constraint firstItem="UXf-t8-h3r" firstAttribute="leading" secondItem="Mth-ld-ps1" secondAttribute="leading" constant="30" id="7Mq-jH-RL6"/>
                                 <constraint firstItem="6HG-q1-e1A" firstAttribute="leading" secondItem="Mth-ld-ps1" secondAttribute="leading" constant="40" id="CeZ-Og-GXL"/>
-                                <constraint firstAttribute="trailing" secondItem="UJI-N1-RZt" secondAttribute="trailing" constant="30" id="CtB-XQ-Si5"/>
+                                <constraint firstItem="6HG-q1-e1A" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VaY-l3-h27" secondAttribute="bottom" constant="20" id="JJ6-5d-9Kb"/>
                                 <constraint firstItem="UXf-t8-h3r" firstAttribute="top" secondItem="Mth-ld-ps1" secondAttribute="top" constant="30" id="RdT-kF-YYR"/>
-                                <constraint firstItem="UJI-N1-RZt" firstAttribute="leading" secondItem="Mth-ld-ps1" secondAttribute="leading" constant="30" id="Rpn-sc-TH4"/>
-                                <constraint firstItem="6HG-q1-e1A" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UJI-N1-RZt" secondAttribute="bottom" constant="30" id="TQF-Qf-KFM"/>
-                                <constraint firstItem="UJI-N1-RZt" firstAttribute="top" secondItem="UXf-t8-h3r" secondAttribute="bottom" constant="20" id="h4m-ht-xQt"/>
                                 <constraint firstAttribute="bottom" secondItem="6HG-q1-e1A" secondAttribute="bottom" constant="90" id="rFh-Rr-Cvk"/>
+                                <constraint firstAttribute="trailing" secondItem="VaY-l3-h27" secondAttribute="trailing" constant="30" id="tSI-dW-7CY"/>
+                                <constraint firstItem="VaY-l3-h27" firstAttribute="leading" secondItem="Mth-ld-ps1" secondAttribute="leading" constant="30" id="xze-Hj-w54"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -110,8 +111,11 @@
         <namedColor name="background">
             <color red="0.792156862745098" green="0.77916211562796478" blue="0.61326434262176754" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

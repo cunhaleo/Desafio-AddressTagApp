@@ -13,6 +13,7 @@ final class TagViewController: UIViewController {
     
     private let address: AddressModel
     private let viewModel: TagViewModel
+    private let db: DataManagerProtocol
     
     // MARK: - Outlets
     @IBOutlet weak var textViewFullAddress: UITextView!
@@ -34,6 +35,7 @@ final class TagViewController: UIViewController {
     }
     
     @IBAction func handleSave(_ sender: Any) {
+        viewModel.saveAddress(address: textViewFullAddress.text)
     }
     
     //MARK: - Methods

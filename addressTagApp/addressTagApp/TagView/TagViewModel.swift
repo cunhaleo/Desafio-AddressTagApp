@@ -7,7 +7,13 @@
 
 import Foundation
 
-struct TagViewModel {
+final class TagViewModel {
+    
+    private var db: DataManagerProtocol
+    
+    init(db: DataManagerProtocol = DataManager.shared) {
+        self.db = db
+    }
     
     func getFullAddress(for address: AddressModel) -> String {
         """
@@ -16,4 +22,9 @@ struct TagViewModel {
         ddd: \(address.ddd ?? ""). Região: \(address.regiao ?? "") (\(address.estado ?? ""))
         """
     }
+    
+    func saveAddress(address: String) {
+        db.save(address)
+    }
+    
 }

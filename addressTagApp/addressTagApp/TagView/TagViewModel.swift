@@ -7,13 +7,27 @@
 
 import Foundation
 
-struct TagViewModel {
+final class TagViewModel {
     
-    func getFullAddress(for address: AddressModel) -> String {
+    private let dataManager = DataManager.shared
+    
+    func generateFullAddressTextWith(newAddress: AddressModel?, savedItem: Address?) -> String {
+        if let newAddress = newAddress {
+            return
         """
-        \(address.logradouro ?? ""), \(address.bairro ?? ""), \(address.localidade ?? "") - \(address.uf ?? "").
-        CEP: \(address.cep ?? "")
-        ddd: \(address.ddd ?? ""). Região: \(address.regiao ?? "") (\(address.estado ?? ""))
+        \(newAddress.logradouro ?? ""), \(newAddress.bairro ?? ""), \(newAddress.localidade ?? "") - \(newAddress.uf ?? "").
+        CEP: \(newAddress.cep ?? "")
+        ddd: \(newAddress.ddd ?? ""). Região: \(newAddress.regiao ?? "") (\(newAddress.estado ?? ""))
         """
+        }
+        return savedItem?.fullAddress ?? ""
+    }
+    
+    func saveAddressInDevice(name: String, fullAddress: String) {
+        dataManager.createItem(name: name, fullAddress: fullAddress)
+    }
+    
+    func updateAddress(item: Address, newfullAddress: String) {
+        dataManager.updateItem(item: item, newFullAddress: newfullAddress)
     }
 }

@@ -18,6 +18,13 @@
 		90767E8F2E50FFD00091BF62 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90767E8D2E50FFD00091BF62 /* TagViewController.swift */; };
 		90767E902E50FFD00091BF62 /* TagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90767E8E2E50FFD00091BF62 /* TagViewController.xib */; };
 		90910CA32E6C8ED300648567 /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CA22E6C8ED300648567 /* TagViewModel.swift */; };
+		90910CA62E6CA19A00648567 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CA52E6CA19A00648567 /* DataManager.swift */; };
+		90910CA92E6CC2CF00648567 /* CoreDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 90910CA72E6CC2CF00648567 /* CoreDatabase.xcdatamodeld */; };
+		90910CD62E6CD1A200648567 /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CD42E6CD1A200648567 /* Address+CoreDataClass.swift */; };
+		90910CD72E6CD1A200648567 /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CD52E6CD1A200648567 /* Address+CoreDataProperties.swift */; };
+		90910CDB2E6D9B2300648567 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CD92E6D9B2300648567 /* TabBarViewController.swift */; };
+		90910CDF2E6DA35500648567 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CDE2E6DA35500648567 /* AgendaViewController.swift */; };
+		90910CE12E6DAAB600648567 /* AgendaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CE02E6DAAB600648567 /* AgendaViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +41,13 @@
 		90767E8D2E50FFD00091BF62 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		90767E8E2E50FFD00091BF62 /* TagViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagViewController.xib; sourceTree = "<group>"; };
 		90910CA22E6C8ED300648567 /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
+		90910CA52E6CA19A00648567 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		90910CA82E6CC2CF00648567 /* CoreDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDatabase.xcdatamodel; sourceTree = "<group>"; };
+		90910CD42E6CD1A200648567 /* Address+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataClass.swift"; sourceTree = "<group>"; };
+		90910CD52E6CD1A200648567 /* Address+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		90910CD92E6D9B2300648567 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		90910CDE2E6DA35500648567 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
+		90910CE02E6DAAB600648567 /* AgendaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,9 +80,12 @@
 		903AC0802E43E9E80092DEBA /* addressTagApp */ = {
 			isa = PBXGroup;
 			children = (
+				90910CD32E6CCFAB00648567 /* CoreData */,
 				90910CA42E6C8EF800648567 /* Common */,
 				903AC0812E43E9E80092DEBA /* AppDelegate.swift */,
+				90910CD82E6D9AF700648567 /* TabBarController */,
 				90767E812E47E9B70091BF62 /* Home */,
+				90910CDD2E6DA33600648567 /* Agenda */,
 				90767E8C2E50FFB00091BF62 /* TagView */,
 				903AC08A2E43E9EB0092DEBA /* Assets.xcassets */,
 				90767E882E4E37890091BF62 /* AssetsManager.swift */,
@@ -104,6 +121,34 @@
 			children = (
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		90910CD32E6CCFAB00648567 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				90910CD42E6CD1A200648567 /* Address+CoreDataClass.swift */,
+				90910CD52E6CD1A200648567 /* Address+CoreDataProperties.swift */,
+				90910CA52E6CA19A00648567 /* DataManager.swift */,
+				90910CA72E6CC2CF00648567 /* CoreDatabase.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		90910CD82E6D9AF700648567 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				90910CD92E6D9B2300648567 /* TabBarViewController.swift */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		90910CDD2E6DA33600648567 /* Agenda */ = {
+			isa = PBXGroup;
+			children = (
+				90910CDE2E6DA35500648567 /* AgendaViewController.swift */,
+				90910CE02E6DAAB600648567 /* AgendaViewModel.swift */,
+			);
+			path = Agenda;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,10 +224,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				90767E872E4968EE0091BF62 /* AddressModel.swift in Sources */,
+				90910CDF2E6DA35500648567 /* AgendaViewController.swift in Sources */,
+				90910CE12E6DAAB600648567 /* AgendaViewModel.swift in Sources */,
 				903AC0822E43E9E80092DEBA /* AppDelegate.swift in Sources */,
+				90910CD62E6CD1A200648567 /* Address+CoreDataClass.swift in Sources */,
+				90910CD72E6CD1A200648567 /* Address+CoreDataProperties.swift in Sources */,
+				90910CDB2E6D9B2300648567 /* TabBarViewController.swift in Sources */,
+				90910CA92E6CC2CF00648567 /* CoreDatabase.xcdatamodeld in Sources */,
 				90910CA32E6C8ED300648567 /* TagViewModel.swift in Sources */,
 				90767E852E4968B80091BF62 /* HomeViewModel.swift in Sources */,
 				90767E8F2E50FFD00091BF62 /* TagViewController.swift in Sources */,
+				90910CA62E6CA19A00648567 /* DataManager.swift in Sources */,
 				90767E892E4E37890091BF62 /* AssetsManager.swift in Sources */,
 				90767E7F2E47E5FF0091BF62 /* HomeViewController.swift in Sources */,
 			);
@@ -409,6 +461,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		90910CA72E6CC2CF00648567 /* CoreDatabase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				90910CA82E6CC2CF00648567 /* CoreDatabase.xcdatamodel */,
+			);
+			currentVersion = 90910CA82E6CC2CF00648567 /* CoreDatabase.xcdatamodel */;
+			path = CoreDatabase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 903AC0762E43E9E80092DEBA /* Project object */;
 }

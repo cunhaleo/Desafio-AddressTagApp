@@ -103,7 +103,7 @@ final class HomeViewController: UIViewController {
     // MARK: Navigation
     
     private func goToTag() {
-        let tagViewController = TagViewController(address: self.address)
+        let tagViewController = TagViewController(tagType: .newAddress, newAddress: address)
         navigationController?.pushViewController(tagViewController, animated: true)
     }
 }

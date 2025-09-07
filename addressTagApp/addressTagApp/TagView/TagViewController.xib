@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="buttonEdit" destination="T2G-Gw-Tgi" id="2fF-oV-wbi"/>
                 <outlet property="buttonSave" destination="rST-pB-JBv" id="ekh-kt-fuo"/>
+                <outlet property="labelTagTitle" destination="UXf-t8-h3r" id="IJt-bw-epm"/>
                 <outlet property="textViewFullAddress" destination="VaY-l3-h27" id="9Az-SI-cg4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -109,7 +110,7 @@
     </objects>
     <resources>
         <namedColor name="background">
-            <color red="0.792156862745098" green="0.77916211562796478" blue="0.61326434262176754" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.792156862745098" green="0.7803921568627451" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

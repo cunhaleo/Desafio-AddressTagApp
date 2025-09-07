@@ -8,25 +8,11 @@
 import UIKit
 import CoreData
 
-protocol DataManagerProtocol {
-    func save(_ object: String)
-    func read() -> String
-}
-
-final class DataManager: DataManagerProtocol {
+final class DataManager {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     static let shared = DataManager()
-    
-    func save(_ object: String) {
-        //code CORE DATA
-    }
-    
-    func read() -> String {
-        //code
-        ""
-    }
     
     func getAllItems() -> [Address] {
         do {
@@ -39,9 +25,9 @@ final class DataManager: DataManagerProtocol {
         return []
     }
     
-    func getItem(name: String) -> Address {
-        return Address()
-    }
+//    func getItem(name: String) -> Address {
+//    
+//    }
     
     func createItem(name: String, fullAddress: String) {
         let newItem = Address(context: context)

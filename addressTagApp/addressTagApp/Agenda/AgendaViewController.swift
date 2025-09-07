@@ -28,7 +28,6 @@ final class AgendaViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        title = "Agenda"
         setupTableView()
     }
     
@@ -46,7 +45,10 @@ final class AgendaViewController: UIViewController {
     
     private func loadAddressList() {
         self.addressList = viewModel.getAddressList()
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
     }
 }
 
@@ -57,7 +59,14 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Test"
+        let itemName = addressList[indexPath.row].name
+        cell.textLabel?.text = itemName
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = addressList[indexPath.row]
+        let tagView = TagFactory.makeTagViewController(type: .loadExistingTag, savedItem: item)
+        self.navigationController?.pushViewController(tagView, animated: true)
     }
 }

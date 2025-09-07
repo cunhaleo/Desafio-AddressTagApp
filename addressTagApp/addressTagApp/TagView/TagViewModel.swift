@@ -11,7 +11,7 @@ final class TagViewModel {
     
     private let db = DataManager.shared
     
-    func generateFullAddressTextWith(address: AddressModel?, name: String?) -> String {
+    func generateFullAddressTextWith(address: AddressModel?, savedItem: Address?) -> String {
         if let address = address {
             return
         """
@@ -20,25 +20,19 @@ final class TagViewModel {
         ddd: \(address.ddd ?? ""). Região: \(address.regiao ?? "") (\(address.estado ?? ""))
         """
         }
-        guard let name = name else { return "" }
-        return readAddressInDevice(name: name)
+        return savedItem?.fullAddress ?? ""
     }
     
     func generateFullAddressTextWith(name: String) {
         
     }
     
-    func readAddressInDevice(name: String) -> String {
-        let address = db.getItem(name: name)
-        return address.fullAddress ?? ""    
-    }
-    
     func saveAddressInDevice(name: String, fullAddress: String) {
         db.createItem(name: name, fullAddress: fullAddress)
     }
     
-    func getAllAddresses() {
-        
+    func updateAddress(item: Address, newfullAddress: String) {
+        db.updateItem(item: item, newFullAddress: newfullAddress)
     }
     
 }

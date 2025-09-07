@@ -25,7 +25,6 @@
 		90910CDB2E6D9B2300648567 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CD92E6D9B2300648567 /* TabBarViewController.swift */; };
 		90910CDF2E6DA35500648567 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CDE2E6DA35500648567 /* AgendaViewController.swift */; };
 		90910CE12E6DAAB600648567 /* AgendaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CE02E6DAAB600648567 /* AgendaViewModel.swift */; };
-		90910CE32E6DB44100648567 /* TagFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CE22E6DB44100648567 /* TagFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +48,6 @@
 		90910CD92E6D9B2300648567 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		90910CDE2E6DA35500648567 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
 		90910CE02E6DAAB600648567 /* AgendaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewModel.swift; sourceTree = "<group>"; };
-		90910CE22E6DB44100648567 /* TagFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +109,6 @@
 		90767E8C2E50FFB00091BF62 /* TagView */ = {
 			isa = PBXGroup;
 			children = (
-				90910CE22E6DB44100648567 /* TagFactory.swift */,
 				90910CA22E6C8ED300648567 /* TagViewModel.swift */,
 				90767E8D2E50FFD00091BF62 /* TagViewController.swift */,
 				90767E8E2E50FFD00091BF62 /* TagViewController.xib */,
@@ -235,7 +232,6 @@
 				90910CDB2E6D9B2300648567 /* TabBarViewController.swift in Sources */,
 				90910CA92E6CC2CF00648567 /* CoreDatabase.xcdatamodeld in Sources */,
 				90910CA32E6C8ED300648567 /* TagViewModel.swift in Sources */,
-				90910CE32E6DB44100648567 /* TagFactory.swift in Sources */,
 				90767E852E4968B80091BF62 /* HomeViewModel.swift in Sources */,
 				90767E8F2E50FFD00091BF62 /* TagViewController.swift in Sources */,
 				90910CA62E6CA19A00648567 /* DataManager.swift in Sources */,

@@ -9,18 +9,26 @@ import UIKit
 
 final class TagViewController: UIViewController {
     
+    enum TagType {
+        case newAddress
+        case loadFromDatabase
+    }
+    
     // MARK: - Variables & Attributes
     
-    private let address: AddressModel?
+    private let newAddress: AddressModel?
     private let viewModel: TagViewModel
     private let savedItem: Address?
+    private let tagType: TagType
     
     init(viewModel: TagViewModel = TagViewModel(),
-         address: AddressModel? = nil,
+         tagType: TagType,
+         newAddress: AddressModel? = nil,
          savedItem: Address? = nil) {
-        self.address = address
+        self.newAddress = newAddress
         self.viewModel = viewModel
         self.savedItem = savedItem
+        self.tagType = tagType
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -58,13 +66,21 @@ final class TagViewController: UIViewController {
     //MARK: - Methods
     
     private func setupUI() {
-        labelTagTitle.text = savedItem?.name ?? "Novo endereço"
         buttonEdit.layer.cornerRadius = 15
         buttonSave.layer.cornerRadius = 15
+        switch tagType {
+        case .newAddress:
+            labelTagTitle.text = "Novo endereço"
+            buttonSave.titleLabel?.text = "Salvar"
+        case .loadFromDatabase:
+            labelTagTitle.text = savedItem?.name ?? ""
+            buttonSave.titleLabel?.text = "Atualizar"
+        }
+        
     }
     
     private func generateFullAddressText() {
-        self.textViewFullAddress.text = viewModel.generateFullAddressTextWith(address: address, savedItem: savedItem)
+        self.textViewFullAddress.text = viewModel.generateFullAddressTextWith(newAddress: newAddress, savedItem: savedItem)
     }
     
     private func showAlertRequiringName(completion: @escaping ((String) -> Void)) {

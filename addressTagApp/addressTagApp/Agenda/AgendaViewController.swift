@@ -48,7 +48,6 @@ final class AgendaViewController: UIViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        
     }
 }
 
@@ -66,7 +65,7 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = addressList[indexPath.row]
-        let tagView = TagFactory.makeTagViewController(type: .loadExistingTag, savedItem: item)
+        let tagView = TagViewController(tagType: .loadFromDatabase, savedItem: item)
         self.navigationController?.pushViewController(tagView, animated: true)
     }
 }

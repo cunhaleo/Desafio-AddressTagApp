@@ -25,10 +25,6 @@ final class DataManager {
         return []
     }
     
-//    func getItem(name: String) -> Address {
-//    
-//    }
-    
     func createItem(name: String, fullAddress: String) {
         let newItem = Address(context: context)
         newItem.name = name
@@ -44,7 +40,6 @@ final class DataManager {
     func updateItem(item: Address, newFullAddress: String) {
         item.fullAddress = newFullAddress
         save()
-
     }
     
     private func save() {

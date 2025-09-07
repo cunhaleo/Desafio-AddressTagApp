@@ -8,13 +8,10 @@
 import UIKit
 
 enum ColorPallete {
-    static var background: UIColor {
-        return UIColor(named: "background") ?? UIColor.blue
-    }
+    static let background = UIColor(named: "background") ?? .systemBackground
+    static let agendaBackground = UIColor(named: "agendaBackground") ?? .systemBackground
 }
 
 enum ImageAsset {
-    static var tagLogo: UIImage {
-        return UIImage(named: "tagLogo") ?? UIImage()
-    }
+    static let tagLogo = UIImage(named: "tagLogo") ?? UIImage()
 }

@@ -28,13 +28,15 @@ final class DataManager: DataManagerProtocol {
         ""
     }
     
-    func getAllItems() {
+    func getAllItems() -> [Address] {
         do {
             let items = try context.fetch(Address.fetchRequest())
+            return items
         }
         catch {
             // error
         }
+        return []
     }
     
     func getItem(name: String) -> Address {

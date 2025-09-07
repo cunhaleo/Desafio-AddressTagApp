@@ -24,6 +24,7 @@
 		90910CD72E6CD1A200648567 /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CD52E6CD1A200648567 /* Address+CoreDataProperties.swift */; };
 		90910CDB2E6D9B2300648567 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CD92E6D9B2300648567 /* TabBarViewController.swift */; };
 		90910CDF2E6DA35500648567 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CDE2E6DA35500648567 /* AgendaViewController.swift */; };
+		90910CE12E6DAAB600648567 /* AgendaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CE02E6DAAB600648567 /* AgendaViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		90910CD52E6CD1A200648567 /* Address+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		90910CD92E6D9B2300648567 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		90910CDE2E6DA35500648567 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
+		90910CE02E6DAAB600648567 /* AgendaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				90910CDE2E6DA35500648567 /* AgendaViewController.swift */,
+				90910CE02E6DAAB600648567 /* AgendaViewModel.swift */,
 			);
 			path = Agenda;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			files = (
 				90767E872E4968EE0091BF62 /* AddressModel.swift in Sources */,
 				90910CDF2E6DA35500648567 /* AgendaViewController.swift in Sources */,
+				90910CE12E6DAAB600648567 /* AgendaViewModel.swift in Sources */,
 				903AC0822E43E9E80092DEBA /* AppDelegate.swift in Sources */,
 				90910CD62E6CD1A200648567 /* Address+CoreDataClass.swift in Sources */,
 				90910CD72E6CD1A200648567 /* Address+CoreDataProperties.swift in Sources */,

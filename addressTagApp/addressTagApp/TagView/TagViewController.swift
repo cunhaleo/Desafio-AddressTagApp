@@ -49,7 +49,7 @@ final class TagViewController: UIViewController {
     }
     
     private func generateFullAddressText() {
-        self.textViewFullAddress.text = viewModel.getFullAddress(for: address)
+        self.textViewFullAddress.text = viewModel.generateFullAddressTextWith(address: address)
     }
     
     

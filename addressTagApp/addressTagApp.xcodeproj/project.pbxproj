@@ -22,6 +22,8 @@
 		90910CA92E6CC2CF00648567 /* CoreDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 90910CA72E6CC2CF00648567 /* CoreDatabase.xcdatamodeld */; };
 		90910CD62E6CD1A200648567 /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CD42E6CD1A200648567 /* Address+CoreDataClass.swift */; };
 		90910CD72E6CD1A200648567 /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CD52E6CD1A200648567 /* Address+CoreDataProperties.swift */; };
+		90910CDB2E6D9B2300648567 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CD92E6D9B2300648567 /* TabBarViewController.swift */; };
+		90910CDC2E6D9B2300648567 /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90910CDA2E6D9B2300648567 /* TabBarViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		90910CA82E6CC2CF00648567 /* CoreDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDatabase.xcdatamodel; sourceTree = "<group>"; };
 		90910CD42E6CD1A200648567 /* Address+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataClass.swift"; sourceTree = "<group>"; };
 		90910CD52E6CD1A200648567 /* Address+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		90910CD92E6D9B2300648567 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		90910CDA2E6D9B2300648567 /* TabBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 				90910CD32E6CCFAB00648567 /* CoreData */,
 				90910CA42E6C8EF800648567 /* Common */,
 				903AC0812E43E9E80092DEBA /* AppDelegate.swift */,
+				90910CD82E6D9AF700648567 /* TabBarController */,
 				90767E812E47E9B70091BF62 /* Home */,
 				90767E8C2E50FFB00091BF62 /* TagView */,
 				903AC08A2E43E9EB0092DEBA /* Assets.xcassets */,
@@ -124,6 +129,15 @@
 				90910CA72E6CC2CF00648567 /* CoreDatabase.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		90910CD82E6D9AF700648567 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				90910CD92E6D9B2300648567 /* TabBarViewController.swift */,
+				90910CDA2E6D9B2300648567 /* TabBarViewController.xib */,
+			);
+			path = TabBarController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90910CDC2E6D9B2300648567 /* TabBarViewController.xib in Resources */,
 				903AC08E2E43E9EB0092DEBA /* LaunchScreen.storyboard in Resources */,
 				90767E902E50FFD00091BF62 /* TagViewController.xib in Resources */,
 				903AC08B2E43E9EB0092DEBA /* Assets.xcassets in Resources */,
@@ -202,6 +217,7 @@
 				903AC0822E43E9E80092DEBA /* AppDelegate.swift in Sources */,
 				90910CD62E6CD1A200648567 /* Address+CoreDataClass.swift in Sources */,
 				90910CD72E6CD1A200648567 /* Address+CoreDataProperties.swift in Sources */,
+				90910CDB2E6D9B2300648567 /* TabBarViewController.swift in Sources */,
 				90910CA92E6CC2CF00648567 /* CoreDatabase.xcdatamodeld in Sources */,
 				90910CA32E6C8ED300648567 /* TagViewModel.swift in Sources */,
 				90767E852E4968B80091BF62 /* HomeViewModel.swift in Sources */,

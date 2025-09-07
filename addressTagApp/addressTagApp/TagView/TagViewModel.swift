@@ -9,13 +9,9 @@ import Foundation
 
 final class TagViewModel {
     
-    private var db: DataManagerProtocol
+    private let db = DataManager.shared
     
-    init(db: DataManagerProtocol = DataManager.shared) {
-        self.db = db
-    }
-    
-    func getFullAddress(for address: AddressModel?) -> String {
+    func generateFullAddressTextWith(address: AddressModel?, name: String?) -> String {
         if let address = address {
             return
         """
@@ -24,15 +20,25 @@ final class TagViewModel {
         ddd: \(address.ddd ?? ""). Região: \(address.regiao ?? "") (\(address.estado ?? ""))
         """
         }
-        return readAddressInDevice()
+        guard let name = name else { return "" }
+        return readAddressInDevice(name: name)
     }
     
-    func readAddressInDevice() -> String {
-        db.read()
+    func generateFullAddressTextWith(name: String) {
+        
     }
     
-    func saveAddressInDevice(address: String) {
-        db.save(address)
+    func readAddressInDevice(name: String) -> String {
+        let address = db.getItem(name: name)
+        return address.fullAddress ?? "
+    }
+    
+    func saveAddressInDevice(name: String, fullAddress: String) {
+        db.createItem(name: name, fullAddress: fullAddress)
+    }
+    
+    func getAllAddresses() {
+        
     }
     
 }

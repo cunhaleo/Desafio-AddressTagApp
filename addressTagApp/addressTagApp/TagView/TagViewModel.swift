@@ -30,7 +30,7 @@ final class TagViewModel {
     
     func readAddressInDevice(name: String) -> String {
         let address = db.getItem(name: name)
-        return address.fullAddress ?? "
+        return address.fullAddress ?? ""    
     }
     
     func saveAddressInDevice(name: String, fullAddress: String) {

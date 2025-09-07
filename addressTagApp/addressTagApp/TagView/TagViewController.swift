@@ -34,7 +34,7 @@ final class TagViewController: UIViewController {
     }
     
     @IBAction func handleSave(_ sender: Any) {
-        viewModel.saveAddressInDevice(address: textViewFullAddress.text)
+        viewModel.saveAddressInDevice(name: "Teste", fullAddress: "FullAddress")
     }
     
     //MARK: - Methods
@@ -49,7 +49,7 @@ final class TagViewController: UIViewController {
     }
     
     private func generateFullAddressText() {
-        self.textViewFullAddress.text = viewModel.generateFullAddressTextWith(address: address)
+        self.textViewFullAddress.text = viewModel.generateFullAddressTextWith(address: address, name: nil)
     }
     
     

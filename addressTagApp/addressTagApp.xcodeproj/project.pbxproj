@@ -25,6 +25,7 @@
 		90910CDB2E6D9B2300648567 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CD92E6D9B2300648567 /* TabBarViewController.swift */; };
 		90910CDF2E6DA35500648567 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CDE2E6DA35500648567 /* AgendaViewController.swift */; };
 		90910CE12E6DAAB600648567 /* AgendaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CE02E6DAAB600648567 /* AgendaViewModel.swift */; };
+		90910CE52E6DFA6A00648567 /* DatabaseFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CE42E6DFA6A00648567 /* DatabaseFeedback.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		90910CD92E6D9B2300648567 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		90910CDE2E6DA35500648567 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
 		90910CE02E6DAAB600648567 /* AgendaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewModel.swift; sourceTree = "<group>"; };
+		90910CE42E6DFA6A00648567 /* DatabaseFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFeedback.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,9 +82,9 @@
 		903AC0802E43E9E80092DEBA /* addressTagApp */ = {
 			isa = PBXGroup;
 			children = (
+				903AC0812E43E9E80092DEBA /* AppDelegate.swift */,
 				90910CD32E6CCFAB00648567 /* CoreData */,
 				90910CA42E6C8EF800648567 /* Common */,
-				903AC0812E43E9E80092DEBA /* AppDelegate.swift */,
 				90910CD82E6D9AF700648567 /* TabBarController */,
 				90767E812E47E9B70091BF62 /* Home */,
 				90910CDD2E6DA33600648567 /* Agenda */,
@@ -129,6 +131,7 @@
 				90910CD42E6CD1A200648567 /* Address+CoreDataClass.swift */,
 				90910CD52E6CD1A200648567 /* Address+CoreDataProperties.swift */,
 				90910CA52E6CA19A00648567 /* DataManager.swift */,
+				90910CE42E6DFA6A00648567 /* DatabaseFeedback.swift */,
 				90910CA72E6CC2CF00648567 /* CoreDatabase.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -230,6 +233,7 @@
 				90910CD62E6CD1A200648567 /* Address+CoreDataClass.swift in Sources */,
 				90910CD72E6CD1A200648567 /* Address+CoreDataProperties.swift in Sources */,
 				90910CDB2E6D9B2300648567 /* TabBarViewController.swift in Sources */,
+				90910CE52E6DFA6A00648567 /* DatabaseFeedback.swift in Sources */,
 				90910CA92E6CC2CF00648567 /* CoreDatabase.xcdatamodeld in Sources */,
 				90910CA32E6C8ED300648567 /* TagViewModel.swift in Sources */,
 				90767E852E4968B80091BF62 /* HomeViewModel.swift in Sources */,

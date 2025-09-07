@@ -25,29 +25,35 @@ final class DataManager {
         return []
     }
     
-    func createItem(name: String, fullAddress: String) {
+    func createItem(name: String,
+                    fullAddress: String,
+                    completion: @escaping (Result<(), Error>) -> Void) {
         let newItem = Address(context: context)
         newItem.name = name
         newItem.fullAddress = fullAddress
-        save()
+        save(completion: completion)
     }
     
-    func deleteItem(item: Address) {
+    func deleteItem(item: Address,
+                    completion: @escaping (Result<(), Error>) -> Void) {
         context.delete(item)
-        save()
+        save(completion: completion)
     }
     
-    func updateItem(item: Address, newFullAddress: String) {
+    func updateItem(item: Address,
+                    newFullAddress: String,
+                    completion: @escaping (Result<(), Error>) -> Void) {
         item.fullAddress = newFullAddress
-        save()
+        save(completion: completion)
     }
     
-    private func save() {
+    private func save(completion: @escaping ((Result<(), Error>) -> Void)) {
         do {
             try context.save()
+            completion(.success(()))
         }
         catch {
-            // error
+            completion(.failure(error))
         }
     }
 }

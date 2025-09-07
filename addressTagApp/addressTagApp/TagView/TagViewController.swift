@@ -61,11 +61,21 @@ final class TagViewController: UIViewController {
         switch tagType {
         case .newAddress:
             showAlertRequiringName { [weak self] name in
-                self?.viewModel.saveAddressInDevice(name: name, fullAddress: fullAddress)
+                self?.viewModel.saveAddressInDevice(name: name, fullAddress: fullAddress) { [weak self] error in
+                    let alert = DatabaseFeedback.alertDatabaseSuccess(type: .save)
+                    DispatchQueue.main.async {
+                        self?.present(alert, animated: true)
+                    }
+                }
             }
         case .loadFromDatabase:
             guard let savedItem = savedItem else { return }
-            viewModel.updateAddress(item: savedItem, newfullAddress: fullAddress)
+            viewModel.updateAddress(item: savedItem, newfullAddress: fullAddress) { [weak self] error in
+                let alert = DatabaseFeedback.alertDatabaseSuccess(type: .update)
+                DispatchQueue.main.async {
+                    self?.present(alert, animated: true)
+                }
+            }
         }
     }
     

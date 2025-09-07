@@ -23,11 +23,14 @@ final class TagViewModel {
         return savedItem?.fullAddress ?? ""
     }
     
-    func saveAddressInDevice(name: String, fullAddress: String) {
-        dataManager.createItem(name: name, fullAddress: fullAddress)
+    func saveAddressInDevice(name: String,
+                             fullAddress: String,
+                             completion: @escaping ((Result<(), Error>) -> Void)) {
+        dataManager.createItem(name: name, fullAddress: fullAddress, completion: completion)
     }
     
-    func updateAddress(item: Address, newfullAddress: String) {
-        dataManager.updateItem(item: item, newFullAddress: newfullAddress)
+    func updateAddress(item: Address, newfullAddress: String,
+                       completion: @escaping ((Result<(), Error>) -> Void)) {
+        dataManager.updateItem(item: item, newFullAddress: newfullAddress, completion: completion)
     }
 }

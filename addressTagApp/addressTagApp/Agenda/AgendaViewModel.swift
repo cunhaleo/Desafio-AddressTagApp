@@ -15,4 +15,8 @@ final class AgendaViewModel {
         let addressList = dataManager.getAllItems()
         return addressList
     }
+    
+    func deleteItem(item: Address) {
+        dataManager.deleteItem(item: item)
+    }
 }

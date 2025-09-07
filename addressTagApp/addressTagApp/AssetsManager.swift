@@ -9,7 +9,7 @@ import UIKit
 
 enum ColorPallete {
     static let background = UIColor(named: "background") ?? .systemBackground
-    static let agendaBackground = UIColor(named: "agendaBackground") ?? .systemBackground
+    static let tabBarColor = UIColor(named: "tabBarColor") ?? .systemBackground
 }
 
 enum ImageAsset {

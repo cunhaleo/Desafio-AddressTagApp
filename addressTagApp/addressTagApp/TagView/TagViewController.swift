@@ -49,7 +49,7 @@ final class TagViewController: UIViewController {
         generateFullAddressText()
         setupUI()
     }
-    
+
     //MARK: - Actions
     
     @IBAction func handleEdit(_ sender: Any) {
@@ -58,8 +58,14 @@ final class TagViewController: UIViewController {
     
     @IBAction func handleSave(_ sender: Any) {
         let fullAddress = textViewFullAddress.text ?? ""
-        showAlertRequiringName { [weak self] name in
-            self?.viewModel.saveAddressInDevice(name: name, fullAddress: fullAddress)
+        switch tagType {
+        case .newAddress:
+            showAlertRequiringName { [weak self] name in
+                self?.viewModel.saveAddressInDevice(name: name, fullAddress: fullAddress)
+            }
+        case .loadFromDatabase:
+            guard let savedItem = savedItem else { return }
+            viewModel.updateAddress(item: savedItem, newfullAddress: fullAddress)
         }
     }
     
@@ -71,16 +77,16 @@ final class TagViewController: UIViewController {
         switch tagType {
         case .newAddress:
             labelTagTitle.text = "Novo endereço"
-            buttonSave.titleLabel?.text = "Salvar"
+            buttonSave.setTitle("Salvar", for: .normal)
         case .loadFromDatabase:
             labelTagTitle.text = savedItem?.name ?? ""
-            buttonSave.titleLabel?.text = "Atualizar"
+            buttonSave.setTitle("Atualizar", for: .normal)
         }
-        
     }
     
     private func generateFullAddressText() {
-        self.textViewFullAddress.text = viewModel.generateFullAddressTextWith(newAddress: newAddress, savedItem: savedItem)
+        self.textViewFullAddress.text = viewModel.generateFullAddressTextWith(newAddress: newAddress,
+                                                                              savedItem: savedItem)
     }
     
     private func showAlertRequiringName(completion: @escaping ((String) -> Void)) {

@@ -39,7 +39,7 @@ final class AgendaViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
-        tableView.backgroundColor = ColorPallete.agendaBackground
+        tableView.backgroundColor = ColorPallete.background
         view.addSubview(tableView)
     }
     
@@ -68,4 +68,15 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
         let tagView = TagViewController(tagType: .loadFromDatabase, savedItem: item)
         self.navigationController?.pushViewController(tagView, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView,
+                       commit editingStyle: UITableViewCell.EditingStyle,
+                       forRowAt indexPath: IndexPath) {
+
+            if editingStyle == .delete {
+                let item = addressList[indexPath.row]
+                viewModel.deleteItem(item: item)
+                loadAddressList()
+            }
+        }
 }

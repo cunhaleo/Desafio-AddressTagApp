@@ -75,8 +75,14 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
 
             if editingStyle == .delete {
                 let item = addressList[indexPath.row]
-                viewModel.deleteItem(item: item) { [weak self] error in
-                    let alert = DatabaseFeedback.alertDatabaseSuccess(type: .delete)
+                viewModel.deleteItem(item: item) { [weak self] result in
+                    var alert = UIAlertController()
+                    switch result {
+                    case .success():
+                        alert = DatabaseFeedback.alertDatabaseSuccess(type: .delete)
+                    case .failure(_):
+                        alert = DatabaseFeedback.alertDatabaseFailed(type: .delete)
+                    }
                     DispatchQueue.main.async {
                         self?.present(alert, animated: true)
                     }

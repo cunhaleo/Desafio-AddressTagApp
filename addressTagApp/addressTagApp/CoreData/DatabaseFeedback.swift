@@ -32,7 +32,7 @@ struct DatabaseFeedback {
         return alert
     }
     
-    static func alertFailed(type: AlertType) -> UIAlertController {
+    static func alertDatabaseFailed(type: AlertType) -> UIAlertController {
         var message = ""
         switch type {
         case .save:

@@ -49,7 +49,7 @@ final class TagViewController: UIViewController {
         generateFullAddressText()
         setupUI()
     }
-
+    
     //MARK: - Actions
     
     @IBAction func handleEdit(_ sender: Any) {
@@ -70,8 +70,14 @@ final class TagViewController: UIViewController {
             }
         case .loadFromDatabase:
             guard let savedItem = savedItem else { return }
-            viewModel.updateAddress(item: savedItem, newfullAddress: fullAddress) { [weak self] error in
-                let alert = DatabaseFeedback.alertDatabaseSuccess(type: .update)
+            viewModel.updateAddress(item: savedItem, newfullAddress: fullAddress) { [weak self] result in
+                var alert = UIAlertController()
+                switch result {
+                case .success():
+                    alert = DatabaseFeedback.alertDatabaseSuccess(type: .update)
+                case .failure(_):
+                    alert = DatabaseFeedback.alertDatabaseFailed(type: .update)
+                }
                 DispatchQueue.main.async {
                     self?.present(alert, animated: true)
                 }

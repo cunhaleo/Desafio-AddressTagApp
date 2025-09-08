@@ -42,9 +42,9 @@ final class HomeViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = ColorPallete.background
         buttonPrintTag.layer.cornerRadius = 15
-        buttonPrintTag.backgroundColor = .darkGray
+        buttonPrintTag.backgroundColor = ColorPallete.primaryButtonColor
         buttonSearchAddress.layer.cornerRadius = 15
-        buttonSearchAddress.backgroundColor = .darkGray
+        buttonSearchAddress.backgroundColor = ColorPallete.secondaryButtonColor
         imageViewLogo.image = ImageAsset.tagLogo
         
     }

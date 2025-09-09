@@ -8,34 +8,27 @@
 import Foundation
 
 protocol NetworkLayerProtocol {
-    func get(url: URL, completion: @escaping ((Result<Data, Error>) -> Void))
+    func get(url: URL, completion: @escaping ((Result<Data, Error>?) -> Void))
     func decodeJson<Model: Decodable>(data: Data, objectType: Model.Type) throws -> Model
 }
 
 struct NetworkLayer: NetworkLayerProtocol {
     
-    func get(url: URL, completion: @escaping ((Result<Data, Error>) -> Void)) {
+    func get(url: URL, completion: @escaping ((Result<Data, Error>?) -> Void)) {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         URLSession.shared.dataTask(with: url) { data, urlResponse, error in
             if let error = error {
-                print("error: \(error.localizedDescription)")
+                completion(.failure(error))
             }
             
             if let urlResponse = urlResponse as? HTTPURLResponse {
                 let statusCode = urlResponse.statusCode
                 print("STATUS CODE: \(statusCode.description)")
-                switch statusCode {
-                case 200...299:
-                    guard let data = data else { return }
-                    completion(.success(data))
-                case 400...599:
-                    guard let error = error else { return }
-                    completion(.failure(error))
-                default:
-                    break
-                }
+                guard let data = data else { return }
+                completion(.success(data))
             }
+            completion(nil)
         }.resume()
     }
     

@@ -32,6 +32,8 @@ final class HomeViewModel {
                 }
             case .failure(let error):
                 print(error.localizedDescription)
+            case .none:
+                break
             }
             self?.delegate?.shouldDismissProgress()
             completion()

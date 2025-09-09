@@ -17,14 +17,18 @@ final class HomeViewModel {
     }
     
     func getAddressForCep(_ cep: String, completion: @escaping (() -> ())) {
-        guard let url = URL(string: ServiceEndpoint.getAddressFor(cep: cep)) else { return }
-        network.get(url: url) { result in
+        let endpoint = ServiceEndpoint.getAddressFor(cep: cep)
+        guard let url = URL(string: endpoint) else { return }
+        network.get(url: url) { [self] result in
             switch result {
-            case .success(_):
-                print("tratar sucesso")
-            case .failure(_):
-                print("tratar erro")
+            case .success(let data):
+                if let address = try? network.decodeJson(data: data, objectType: AddressModel.self) {
+                    self.address = address
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
+            completion()
         }
     }
     

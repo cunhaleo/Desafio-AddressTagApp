@@ -7,6 +7,17 @@
 
 import UIKit
 
+protocol ProgressControlDelegate: AnyObject {
+    func shouldShowProgress()
+    func shouldDismissProgress()
+}
+
 extension UIViewController {
+    func showProgress() {
+        
+    }
     
+    func dismissProgress() {
+        
+    }
 }

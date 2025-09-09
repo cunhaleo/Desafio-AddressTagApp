@@ -37,6 +37,7 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         setupUI()
+        viewModel.delegate = self
     }
     
     private func setupUI() {
@@ -107,3 +108,14 @@ final class HomeViewController: UIViewController {
         navigationController?.pushViewController(tagViewController, animated: true)
     }
 }
+
+extension HomeViewController: ProgressControlDelegate {
+    func shouldShowProgress() {
+        showProgress()
+    }
+    
+    func shouldDismissProgress() {
+        dismissProgress()
+    }
+}
+

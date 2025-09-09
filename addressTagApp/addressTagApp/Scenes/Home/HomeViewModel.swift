@@ -11,6 +11,7 @@ final class HomeViewModel {
     private var address : AddressModel
     private let network: NetworkLayerProtocol
     private let serviceEndpoint: ServiceEndpointProtocol
+    weak var delegate: ProgressControlDelegate?
     
     init(network: NetworkLayerProtocol = NetworkLayer(),
          serviceEndpoint: ServiceEndpointProtocol = ServiceEndpoint()) {
@@ -22,6 +23,7 @@ final class HomeViewModel {
     func getAddressForCep(_ cep: String, completion: @escaping (() -> ())) {
         let endpoint = serviceEndpoint.getAddressFor(cep: cep)
         guard let url = URL(string: endpoint) else { return }
+        delegate?.shouldShowProgress()
         network.get(url: url) { [self] result in
             switch result {
             case .success(let data):
@@ -31,6 +33,7 @@ final class HomeViewModel {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+            delegate?.shouldDismissProgress()
             completion()
         }
     }

@@ -10,14 +10,17 @@ import Foundation
 final class HomeViewModel {
     private var address : AddressModel
     private let network: NetworkLayerProtocol
+    private let serviceEndpoint: ServiceEndpointProtocol
     
-    init(network: NetworkLayerProtocol = NetworkLayer()) {
+    init(network: NetworkLayerProtocol = NetworkLayer(),
+         serviceEndpoint: ServiceEndpointProtocol = ServiceEndpoint()) {
         self.address = AddressModel.fixture()
         self.network = network
+        self.serviceEndpoint = serviceEndpoint
     }
     
     func getAddressForCep(_ cep: String, completion: @escaping (() -> ())) {
-        let endpoint = ServiceEndpoint.getAddressFor(cep: cep)
+        let endpoint = serviceEndpoint.getAddressFor(cep: cep)
         guard let url = URL(string: endpoint) else { return }
         network.get(url: url) { [self] result in
             switch result {

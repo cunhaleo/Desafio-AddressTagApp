@@ -7,8 +7,12 @@
 
 import Foundation
 
-struct ServiceEndpoint {
-    static func getAddressFor(cep: String) -> String {
+protocol ServiceEndpointProtocol {
+    func getAddressFor(cep: String) -> String
+}
+
+struct ServiceEndpoint: ServiceEndpointProtocol {
+    func getAddressFor(cep: String) -> String {
         "https://viacep.com.br/ws/\(cep)/json/"
     }
 }

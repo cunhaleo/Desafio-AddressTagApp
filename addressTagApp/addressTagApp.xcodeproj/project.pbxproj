@@ -29,6 +29,7 @@
 		90910CE52E6DFA6A00648567 /* DatabaseFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90910CE42E6DFA6A00648567 /* DatabaseFeedback.swift */; };
 		90FAE2372E70559E00620722 /* ServiceEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FAE2362E70559E00620722 /* ServiceEndpoints.swift */; };
 		90FAE23B2E706E4000620722 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FAE23A2E706E4000620722 /* UIViewController+Extension.swift */; };
+		90FAE23D2E7075BB00620722 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FAE23C2E7075BB00620722 /* ProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		90910CE42E6DFA6A00648567 /* DatabaseFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFeedback.swift; sourceTree = "<group>"; };
 		90FAE2362E70559E00620722 /* ServiceEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndpoints.swift; sourceTree = "<group>"; };
 		90FAE23A2E706E4000620722 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		90FAE23C2E7075BB00620722 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				903AC0812E43E9E80092DEBA /* AppDelegate.swift */,
-				90FAE2392E706E0D00620722 /* Common */,
+				90FAE2392E706E0D00620722 /* ProgressView */,
 				90910CD32E6CCFAB00648567 /* CoreData */,
 				90910CA42E6C8EF800648567 /* Network */,
 				90FAE2382E706DE300620722 /* Scenes */,
@@ -171,12 +173,13 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		90FAE2392E706E0D00620722 /* Common */ = {
+		90FAE2392E706E0D00620722 /* ProgressView */ = {
 			isa = PBXGroup;
 			children = (
 				90FAE23A2E706E4000620722 /* UIViewController+Extension.swift */,
+				90FAE23C2E7075BB00620722 /* ProgressView.swift */,
 			);
-			path = Common;
+			path = ProgressView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +265,7 @@
 				90910CD72E6CD1A200648567 /* Address+CoreDataProperties.swift in Sources */,
 				90910CDB2E6D9B2300648567 /* TabBarViewController.swift in Sources */,
 				90910CE52E6DFA6A00648567 /* DatabaseFeedback.swift in Sources */,
+				90FAE23D2E7075BB00620722 /* ProgressView.swift in Sources */,
 				90910CA92E6CC2CF00648567 /* CoreDatabase.xcdatamodeld in Sources */,
 				90910CA32E6C8ED300648567 /* TagViewModel.swift in Sources */,
 				90767E852E4968B80091BF62 /* HomeViewModel.swift in Sources */,

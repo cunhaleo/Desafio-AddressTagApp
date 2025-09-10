@@ -10,7 +10,7 @@ import CoreData
 
 final class DataManager {
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     static let shared = DataManager()
     

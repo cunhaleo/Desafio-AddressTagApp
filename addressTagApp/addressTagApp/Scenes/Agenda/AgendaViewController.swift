@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 final class AgendaViewController: UIViewController {
     
@@ -14,9 +15,12 @@ final class AgendaViewController: UIViewController {
     private var filteredAddressList = [Address]()
     private let tableView = UITableView()
     private let searchController = UISearchController()
+    private let agendaResultControl: AgendaFetchResultsControl
     
-    init(viewModel: AgendaViewModel = AgendaViewModel()) {
+    init(viewModel: AgendaViewModel = AgendaViewModel(),
+         agendaResultControl: AgendaFetchResultsControl = AgendaFetchResultsControl()) {
         self.viewModel = viewModel
+        self.agendaResultControl = agendaResultControl
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -26,13 +30,11 @@ final class AgendaViewController: UIViewController {
     
     override func viewDidLoad() {
         title = "Meus endereços"
+        setupFetchResultControl()
         setupTableView()
         setupSearchController()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        loadAddressList()
-    }
+
     
     private func setupTableView() {
         tableView.delegate = self
@@ -51,36 +53,31 @@ final class AgendaViewController: UIViewController {
         definesPresentationContext = true
     }
     
-    private func loadFilteredAddressList(searchText: String) {
-        self.filteredAddressList = viewModel.getAddressListContaining(searchText)
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
-    private func loadAddressList() {
-        self.addressList = viewModel.getAddressList()
-        self.filteredAddressList = addressList
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+    private func setupFetchResultControl() {
+        agendaResultControl.delegate = self
+        do {
+            try agendaResultControl.setupFetchedResultsController()
+        } catch {
+            let errorAlert = DatabaseFeedback.alertDatabaseFailed(type: .update)
+            present(errorAlert, animated: true)
         }
     }
 }
 
 extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        filteredAddressList.count
+        agendaResultControl.fetchedResultsController.fetchedObjects?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let itemName = filteredAddressList[indexPath.row].name
+        let itemName = agendaResultControl.fetchedResultsController.fetchedObjects?[indexPath.row].name ?? ""
         cell.textLabel?.text = itemName
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = filteredAddressList[indexPath.row]
+        let item = agendaResultControl.fetchedResultsController.fetchedObjects?[indexPath.row]
         let tagView = TagViewController(tagType: .loadFromDatabase, savedItem: item)
         self.navigationController?.pushViewController(tagView, animated: true)
     }
@@ -90,7 +87,7 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
                    forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            let item = filteredAddressList[indexPath.row]
+            guard let item = agendaResultControl.fetchedResultsController.fetchedObjects?[indexPath.row] else { return }
             viewModel.deleteItem(item: item) { [weak self] result in
                 var alert = UIAlertController()
                 switch result {
@@ -103,7 +100,6 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
                     self?.present(alert, animated: true)
                 }
             }
-            loadAddressList()
         }
     }
 }
@@ -111,10 +107,63 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
 extension AgendaViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
-            filteredAddressList = addressList
-            tableView.reloadData()
+            do {
+                try agendaResultControl.setupFetchedResultsController() { [weak self] in
+                    self?.tableView.reloadData()
+                }
+            }
+            catch {
+                let errorAlert = DatabaseFeedback.alertDatabaseFailed(type: .update)
+                present(errorAlert, animated: true)
+            }
             return
         }
-        loadFilteredAddressList(searchText: searchText)
+        do {
+            try agendaResultControl.setupFetchedResultsController(searchText: searchText) { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
+        catch {
+            let errorAlert = DatabaseFeedback.alertDatabaseFailed(type: .update)
+            present(errorAlert, animated: true)
+        }
+        return
+    }
+}
+
+extension AgendaViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        case .update:
+            if let indexPath = indexPath {
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+        case .move:
+            if let indexPath = indexPath, let newIndexPath = newIndexPath {
+                tableView.moveRow(at: indexPath, to: newIndexPath)
+            }
+        @unknown default:
+            break
+        }
     }
 }

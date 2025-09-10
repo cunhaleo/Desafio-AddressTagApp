@@ -22,7 +22,6 @@ final class AgendaViewModel {
     
     func getAddressListContaining(_ searchText: String) -> [Address] {
         let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
-        let secondPredicate = 
         let filteredAddressList = dataManager.getItems(predicate)
         return filteredAddressList
     }

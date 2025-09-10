@@ -58,9 +58,12 @@ final class AgendaFetchResultsControl: NSObject, NSFetchedResultsControllerDeleg
         fetchedResultsController.fetchedObjects?.count ?? 0
     }
     
-    func item(at indexPath: IndexPath) -> Address {
-        let item = fetchedResultsController.object(at: indexPath)
-        return item
+    func item(at indexPath: IndexPath) -> Address? {
+        guard let resultArray = fetchedResultsController.fetchedObjects else { return nil}
+        if resultArray.indices.contains(indexPath.row) {
+            return fetchedResultsController.object(at: indexPath)
+        }
+        return nil
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -68,4 +71,4 @@ final class AgendaFetchResultsControl: NSObject, NSFetchedResultsControllerDeleg
     }
 }
 
-   
+

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 final class AgendaViewController: UIViewController {
     
@@ -73,7 +72,7 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let itemName = agendaResultControl.item(at: indexPath).name ?? ""
+        let itemName = agendaResultControl.item(at: indexPath)?.name ?? ""
         cell.textLabel?.text = itemName
         return cell
     }
@@ -89,7 +88,7 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
                    forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            let item = agendaResultControl.item(at: indexPath)
+            guard let item = agendaResultControl.item(at: indexPath) else { return }
             viewModel.deleteItem(item: item) { [weak self] result in
                 var alert = UIAlertController()
                 switch result {
@@ -103,6 +102,7 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
                 }
             }
         }
+        try? agendaResultControl.setupFetchedResultsController()
     }
 }
 
@@ -125,7 +125,6 @@ extension AgendaViewController: UISearchResultsUpdating {
             let errorAlert = DatabaseFeedback.alertDatabaseFailed(type: .update)
             present(errorAlert, animated: true)
         }
-        tableView.reloadData()
         return
     }
 }

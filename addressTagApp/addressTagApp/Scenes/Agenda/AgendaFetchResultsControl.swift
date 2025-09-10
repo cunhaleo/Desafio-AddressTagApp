@@ -18,8 +18,12 @@ final class AgendaFetchResultsControl {
                                        shouldReload: (() -> Void)? = nil) throws {
         let request: NSFetchRequest<Address> = Address.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchText ?? "")
-        request.predicate = predicate
+        var predicates: [NSPredicate] = []
+        if let searchText = searchText {
+            predicates.append(NSPredicate(format: "name CONTAINS[cd] %@", searchText))
+            predicates.append(NSPredicate(format: "fullAddress CONTAINS[cd] %@", searchText))
+        }
+        request.predicate = predicates.isEmpty ? nil : NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
         
         fetchedResultsController = NSFetchedResultsController(
             fetchRequest: request,

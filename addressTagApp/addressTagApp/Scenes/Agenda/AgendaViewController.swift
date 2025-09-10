@@ -11,8 +11,6 @@ import CoreData
 final class AgendaViewController: UIViewController {
     
     private let viewModel: AgendaViewModel
-    private var addressList = [Address]()
-    private var filteredAddressList = [Address]()
     private let tableView = UITableView()
     private let searchController = UISearchController()
     private let agendaResultControl: AgendaFetchResultsControl
@@ -34,7 +32,6 @@ final class AgendaViewController: UIViewController {
         setupTableView()
         setupSearchController()
     }
-
     
     private func setupTableView() {
         tableView.delegate = self
@@ -108,10 +105,9 @@ extension AgendaViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
             do {
-                try agendaResultControl.setupFetchedResultsController() { [weak self] in
-                    self?.tableView.reloadData()
-                }
+                try agendaResultControl.setupFetchedResultsController()
             }
+            
             catch {
                 let errorAlert = DatabaseFeedback.alertDatabaseFailed(type: .update)
                 present(errorAlert, animated: true)
@@ -119,14 +115,13 @@ extension AgendaViewController: UISearchResultsUpdating {
             return
         }
         do {
-            try agendaResultControl.setupFetchedResultsController(searchText: searchText) { [weak self] in
-                self?.tableView.reloadData()
-            }
+            try agendaResultControl.setupFetchedResultsController(searchText: searchText)
         }
         catch {
             let errorAlert = DatabaseFeedback.alertDatabaseFailed(type: .update)
             present(errorAlert, animated: true)
         }
+        tableView.reloadData()
         return
     }
 }

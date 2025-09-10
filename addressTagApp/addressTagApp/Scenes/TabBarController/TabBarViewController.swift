@@ -34,6 +34,7 @@ final class TabBarViewController: UITabBarController {
     }
     
     func setupTabBarUI() {
+        title = "Agenda"
         self.tabBar.unselectedItemTintColor = .darkGray
         self.tabBar.tintColor = .systemBlue
         self.tabBar.backgroundColor = ColorPallete.tabBarColor

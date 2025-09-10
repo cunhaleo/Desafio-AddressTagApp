@@ -16,7 +16,7 @@ final class AgendaViewModel {
         return addressList
     }
     
-    func deleteItem(item: Address) {
-        dataManager.deleteItem(item: item)
+    func deleteItem(item: Address, completion: @escaping ((Result<(), Error>) -> Void)) {
+        dataManager.deleteItem(item: item, completion: completion)
     }
 }

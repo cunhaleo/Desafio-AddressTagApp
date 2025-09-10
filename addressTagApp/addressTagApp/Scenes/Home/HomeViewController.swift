@@ -23,8 +23,6 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var textFieldRegion: UITextField!
     @IBOutlet weak var textFieldNeighborhood: UITextField!
     
-    @IBOutlet weak var imageViewLogo: UIImageView!
-    
     init(viewModel: HomeViewModel = HomeViewModel(), address: AddressModel = AddressModel.fixture()) {
         self.viewModel = viewModel
         self.address = address
@@ -37,16 +35,19 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         setupUI()
+        viewModel.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationItem.title = "Novo"
     }
     
     private func setupUI() {
         view.backgroundColor = ColorPallete.background
         buttonPrintTag.layer.cornerRadius = 15
-        buttonPrintTag.backgroundColor = .darkGray
+        buttonPrintTag.backgroundColor = ColorPallete.primaryButtonColor
         buttonSearchAddress.layer.cornerRadius = 15
-        buttonSearchAddress.backgroundColor = .darkGray
-        imageViewLogo.image = ImageAsset.tagLogo
-        
+        buttonSearchAddress.backgroundColor = ColorPallete.secondaryButtonColor
     }
     
     @IBAction func textFieldCepEditingChanged(_ sender: UITextField) {
@@ -107,3 +108,14 @@ final class HomeViewController: UIViewController {
         navigationController?.pushViewController(tagViewController, animated: true)
     }
 }
+
+extension HomeViewController: ProgressControlDelegate {
+    func shouldShowProgress() {
+        showProgress()
+    }
+    
+    func shouldDismissProgress() {
+        dismissProgress()
+    }
+}
+

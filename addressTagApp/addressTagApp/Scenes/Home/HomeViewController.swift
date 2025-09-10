@@ -23,8 +23,6 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var textFieldRegion: UITextField!
     @IBOutlet weak var textFieldNeighborhood: UITextField!
     
-    @IBOutlet weak var imageViewLogo: UIImageView!
-    
     init(viewModel: HomeViewModel = HomeViewModel(), address: AddressModel = AddressModel.fixture()) {
         self.viewModel = viewModel
         self.address = address
@@ -40,14 +38,16 @@ final class HomeViewController: UIViewController {
         viewModel.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationItem.title = "Novo"
+    }
+    
     private func setupUI() {
         view.backgroundColor = ColorPallete.background
         buttonPrintTag.layer.cornerRadius = 15
         buttonPrintTag.backgroundColor = ColorPallete.primaryButtonColor
         buttonSearchAddress.layer.cornerRadius = 15
         buttonSearchAddress.backgroundColor = ColorPallete.secondaryButtonColor
-        imageViewLogo.image = ImageAsset.tagLogo
-        
     }
     
     @IBAction func textFieldCepEditingChanged(_ sender: UITextField) {

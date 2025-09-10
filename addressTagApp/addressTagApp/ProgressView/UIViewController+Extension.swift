@@ -16,10 +16,7 @@ extension UIViewController {
     func showProgress() {
         let progressView = ProgressView()
         progressView.frame = view.bounds
-        progressView.awakeFromNib()
-        DispatchQueue.main.async {
-            self.view.addSubview(progressView)
-        }
+        self.view.addSubview(progressView)
     }
     
     func dismissProgress() {

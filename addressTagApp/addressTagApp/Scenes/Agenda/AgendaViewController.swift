@@ -70,24 +70,24 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView,
-                       commit editingStyle: UITableViewCell.EditingStyle,
-                       forRowAt indexPath: IndexPath) {
-
-            if editingStyle == .delete {
-                let item = addressList[indexPath.row]
-                viewModel.deleteItem(item: item) { [weak self] result in
-                    var alert = UIAlertController()
-                    switch result {
-                    case .success():
-                        alert = DatabaseFeedback.alertDatabaseSuccess(type: .delete)
-                    case .failure(_):
-                        alert = DatabaseFeedback.alertDatabaseFailed(type: .delete)
-                    }
-                    DispatchQueue.main.async {
-                        self?.present(alert, animated: true)
-                    }
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            let item = addressList[indexPath.row]
+            viewModel.deleteItem(item: item) { [weak self] result in
+                var alert = UIAlertController()
+                switch result {
+                case .success():
+                    alert = DatabaseFeedback.alertDatabaseSuccess(type: .delete)
+                case .failure(_):
+                    alert = DatabaseFeedback.alertDatabaseFailed(type: .delete)
                 }
-                loadAddressList()
+                DispatchQueue.main.async {
+                    self?.present(alert, animated: true)
+                }
             }
+            loadAddressList()
         }
+    }
 }

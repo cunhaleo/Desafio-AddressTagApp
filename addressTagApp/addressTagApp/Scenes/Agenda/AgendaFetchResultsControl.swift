@@ -8,18 +8,32 @@
 import CoreData
 import UIKit
 
-final class AgendaFetchResultsControl {
+final class AgendaFetchResultsControl: NSObject, NSFetchedResultsControllerDelegate {
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var fetchedResultsController: NSFetchedResultsController<Address>!
+    private var fetchedResultsController: NSFetchedResultsController<Address>
     
-    weak var delegate: NSFetchedResultsControllerDelegate?
+    var shouldUpdate: (() -> Void)?
+    
+    override init() {
+        let request: NSFetchRequest<Address> = Address.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: request,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        super.init()
+        try? setupFetchedResultsController()
+        fetchedResultsController.delegate = self
+    }
     
     func setupFetchedResultsController(searchText: String? = nil,
                                        shouldReload: (() -> Void)? = nil) throws {
         let request: NSFetchRequest<Address> = Address.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         var predicates: [NSPredicate] = []
-        if let searchText = searchText {
+        if let searchText = searchText, !searchText.isEmpty {
             predicates.append(NSPredicate(format: "name CONTAINS[cd] %@", searchText))
             predicates.append(NSPredicate(format: "fullAddress CONTAINS[cd] %@", searchText))
         }
@@ -34,9 +48,24 @@ final class AgendaFetchResultsControl {
         
         do {
             try fetchedResultsController.performFetch()
-            shouldReload?()
         } catch {
             throw error
         }
+        shouldUpdate?()
+    }
+    
+    func numberOfItems() -> Int {
+        fetchedResultsController.fetchedObjects?.count ?? 0
+    }
+    
+    func item(at indexPath: IndexPath) -> Address {
+        let item = fetchedResultsController.object(at: indexPath)
+        return item
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        shouldUpdate?()
     }
 }
+
+   

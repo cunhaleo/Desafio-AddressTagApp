@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         rootNavigationController.navigationBar.prefersLargeTitles = true
         rootNavigationController.navigationItem.largeTitleDisplayMode = .always
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = rootNavigationController
+        self.window?.rootViewController = rootViewController
         self.window?.makeKeyAndVisible()
         return true
     }

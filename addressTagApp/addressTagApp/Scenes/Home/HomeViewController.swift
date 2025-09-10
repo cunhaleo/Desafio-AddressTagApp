@@ -38,11 +38,8 @@ final class HomeViewController: UIViewController {
         viewModel.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationItem.title = "Novo"
-    }
-    
     private func setupUI() {
+        title = "Novo endereço"
         view.backgroundColor = ColorPallete.background
         buttonPrintTag.layer.cornerRadius = 15
         buttonPrintTag.backgroundColor = ColorPallete.primaryButtonColor
@@ -55,8 +52,8 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction func textFieldCepEditingDidEnd(_ sender: UITextField) {
-        searchAddressForCurrentCep {
-            self.fillTextFieldsFor(address: self.address)
+        searchAddressForCurrentCep { [weak self] in
+            self?.fillTextFieldsFor(address: self?.address)
         }
     }
     
@@ -74,14 +71,14 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction func handleSearchAddress(_ sender: Any) {
-        searchAddressForCurrentCep() {
-            self.fillTextFieldsFor(address: self.address)
+        searchAddressForCurrentCep() { [weak self] in
+            self?.fillTextFieldsFor(address: self?.address)
         }
     }
     
     private func searchAddressForCurrentCep(completion: (() -> ())?) {
-        viewModel.getAddressForCep(currentCep) {
-            self.reloadAddress()
+        viewModel.getAddressForCep(currentCep) { [weak self] in
+            self?.reloadAddress()
             completion?()
         }
     }

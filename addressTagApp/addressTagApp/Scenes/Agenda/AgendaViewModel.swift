@@ -19,4 +19,11 @@ final class AgendaViewModel {
     func deleteItem(item: Address, completion: @escaping ((Result<(), Error>) -> Void)) {
         dataManager.deleteItem(item: item, completion: completion)
     }
+    
+    func getAddressListContaining(_ searchText: String) -> [Address] {
+        let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
+        let secondPredicate = 
+        let filteredAddressList = dataManager.getItems(predicate)
+        return filteredAddressList
+    }
 }

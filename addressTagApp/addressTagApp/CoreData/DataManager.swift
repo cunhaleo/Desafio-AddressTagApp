@@ -25,6 +25,20 @@ final class DataManager {
         return []
     }
     
+    func getItems(_ predicate: NSPredicate? = nil) -> [Address] {
+        let request: NSFetchRequest<Address> = Address.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        request.predicate = predicate
+        do {
+            let items = try context.fetch(request)
+            return items
+        }
+        catch {
+            // error
+        }
+        return []
+    }
+    
     func createItem(name: String,
                     fullAddress: String,
                     completion: @escaping (Result<(), Error>) -> Void) {

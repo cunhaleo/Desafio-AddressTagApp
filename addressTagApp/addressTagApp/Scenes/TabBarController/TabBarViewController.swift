@@ -20,14 +20,14 @@ final class TabBarViewController: UITabBarController {
     }
 
     func createHomeViewController() -> UIViewController {
-        let viewController = HomeViewController()
+        let viewController = UINavigationController(rootViewController: HomeViewController())
         viewController.tabBarItem.title = "Novo"
         viewController.tabBarItem.image = UIImage(systemName: "plus")
         return viewController
     }
     
     func createAgendaViewController() -> UIViewController {
-        let viewController = AgendaViewController()
+        let viewController = UINavigationController(rootViewController: AgendaViewController())
         viewController.tabBarItem.title = "Agenda"
         viewController.tabBarItem.image = UIImage(systemName: "bookmark")
         return viewController

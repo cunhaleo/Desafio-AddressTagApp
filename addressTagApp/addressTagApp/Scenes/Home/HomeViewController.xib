@@ -31,13 +31,13 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0XL-Lt-DaZ">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="609"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="629"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgx-Bd-36C">
-                                    <rect key="frame" x="30" y="469" width="333" height="35"/>
+                                    <rect key="frame" x="30" y="469" width="333" height="45"/>
                                     <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="35" id="nR5-Er-5nw"/>
+                                        <constraint firstAttribute="height" constant="45" id="nR5-Er-5nw"/>
                                     </constraints>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Button"/>
@@ -47,10 +47,10 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yly-6Z-HTa">
-                                    <rect key="frame" x="30" y="534" width="333" height="35"/>
+                                    <rect key="frame" x="30" y="544" width="333" height="45"/>
                                     <color key="backgroundColor" systemColor="systemPinkColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="35" id="fGQ-hH-wJc"/>
+                                        <constraint firstAttribute="height" constant="45" id="fGQ-hH-wJc"/>
                                     </constraints>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Button"/>

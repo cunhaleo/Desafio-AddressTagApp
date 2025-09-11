@@ -1,4 +1,4 @@
-# addressTagApp
+# Address App + Core Data
 
 💡 Motivação: 
 - Criar um App para utilizar as funcionalidades do CoreData como o FetchedResultsController

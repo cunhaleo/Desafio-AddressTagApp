@@ -7,7 +7,17 @@
 
 import Foundation
 
-final class TagViewModel {
+protocol TagViewModeling {
+    func generateFullAddressTextWith(newAddress: AddressModel?,
+                                     savedItem: Address?) -> String
+    func saveAddressInDevice(name: String,
+                             fullAddress: String,
+                             completion: @escaping ((Result<(), Error>) -> Void))
+    func updateAddress(item: Address, newfullAddress: String,
+                       completion: @escaping ((Result<(), Error>) -> Void))
+}
+
+final class TagViewModel: TagViewModeling {
     
     private let dataManager: DataManaging
     

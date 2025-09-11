@@ -17,11 +17,11 @@ final class TagViewController: UIViewController {
     // MARK: - Variables & Attributes
     
     private let newAddress: AddressModel?
-    private let viewModel: TagViewModel
+    private let viewModel: TagViewModeling
     private let savedItem: Address?
     private let tagType: TagType
     
-    init(viewModel: TagViewModel = TagViewModel(),
+    init(viewModel: TagViewModeling = TagViewModel(),
          tagType: TagType,
          newAddress: AddressModel? = nil,
          savedItem: Address? = nil) {

@@ -64,11 +64,11 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateAddressModel() {
-        address.estado = textFieldState.text
-        address.regiao = textFieldRegion.text
-        address.localidade = textFieldLocation.text
-        address.logradouro = textFieldLogradouro.text
-        address.bairro = textFieldNeighborhood.text
+        address.state = textFieldState.text
+        address.region = textFieldRegion.text
+        address.city = textFieldLocation.text
+        address.street = textFieldLogradouro.text
+        address.neighborhood = textFieldNeighborhood.text
     }
     
     @IBAction func handleSearchAddress(_ sender: Any) {
@@ -91,11 +91,11 @@ final class HomeViewController: UIViewController {
     private func fillTextFieldsFor(address: AddressModel?) {
         guard let address = address else { return }
         DispatchQueue.main.async {
-            self.textFieldState.text = address.estado
-            self.textFieldRegion.text = address.regiao
-            self.textFieldLocation.text = address.localidade
-            self.textFieldLogradouro.text = address.logradouro
-            self.textFieldNeighborhood.text = address.bairro
+            self.textFieldState.text = address.state
+            self.textFieldRegion.text = address.region
+            self.textFieldLocation.text = address.city
+            self.textFieldLogradouro.text = address.street
+            self.textFieldNeighborhood.text = address.neighborhood
         }
     }
     

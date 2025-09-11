@@ -40,15 +40,11 @@ final class AgendaFetchResultsControl: FetchResultsControling {
             predicates.append(NSPredicate(format: "name CONTAINS[cd] %@", filterText))
             predicates.append(NSPredicate(format: "fullAddress CONTAINS[cd] %@", filterText))
         }
+        
         let addressPredicate = predicates.isEmpty ? nil : NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
-        
         fetchedResultsController?.fetchRequest.predicate = addressPredicate
+        try? fetchedResultsController?.performFetch()
         
-        do {
-            try fetchedResultsController?.performFetch()
-        } catch {
-            print("Fetch failed")
-        }
     }
     
     func numberOfItems() -> Int {

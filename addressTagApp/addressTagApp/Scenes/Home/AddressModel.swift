@@ -8,49 +8,46 @@
 import Foundation
 
 struct AddressModel: Decodable {
-    var cep: String?
-    var logradouro: String?
-    var complemento: String?
-    var unidade: String?
-    var bairro: String?
-    var localidade: String?
-    var uf: String?
-    var estado: String?
-    var regiao: String?
-    var ibge: String?
-    var gia: String?
-    var ddd: String?
-    var siafi: String?
+    var zipCode: String?
+    var street: String?
+    var neighborhood: String?
+    var city: String?
+    var stateCode: String?
+    var state: String?
+    var region: String?
+    var areaCode: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case zipCode = "cep"
+        case street = "logradouro"
+        case neighborhood = "bairro"
+        case city = "localidade"
+        case stateCode = "uf"
+        case state = "estado"
+        case region = "regiao"
+        case areaCode = "ddd"
+    }
 }
 
 extension AddressModel {
-    static func fixture(cep: String = "",
-                        logradouro: String = "",
-                        complemento: String = "",
-                        unidade: String = "",
-                        bairro: String = "",
-                        localidade: String = "",
-                        uf: String = "",
-                        estado: String = "",
-                        regiao: String = "",
-                        ibge: String = "",
-                        gia: String = "",
-                        ddd: String = "",
-                        siafi: String = "") -> Self {
+    static func fixture(zipCode: String = "",
+                        street: String = "",
+                        neighborhood: String = "",
+                        city: String = "",
+                        stateCode: String = "",
+                        state: String = "",
+                        region: String = "",
+                        areaCode: String = "") -> Self {
         
-        let address = AddressModel(cep: cep,
-                     logradouro: logradouro,
-                     complemento: complemento,
-                     unidade: unidade,
-                     bairro: bairro,
-                     localidade: localidade,
-                     uf: uf,
-                     estado: estado,
-                     regiao: regiao,
-                     ibge: ibge,
-                     gia: gia,
-                     ddd: ddd,
-                     siafi: siafi)
+        let address = AddressModel(zipCode: zipCode,
+                                   street: street,
+                                   neighborhood: neighborhood,
+                                   city: city,
+                                   stateCode: stateCode,
+                                   state: state,
+                                   region: region,
+                                   areaCode: areaCode)
+        
         return address
     }
 }

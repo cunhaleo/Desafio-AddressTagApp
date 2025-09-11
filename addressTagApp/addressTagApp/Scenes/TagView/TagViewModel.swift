@@ -19,9 +19,9 @@ final class TagViewModel {
         if let newAddress = newAddress {
             return
         """
-        \(newAddress.logradouro ?? ""), \(newAddress.bairro ?? ""), \(newAddress.localidade ?? "") - \(newAddress.uf ?? "").
-        CEP: \(newAddress.cep ?? "")
-        ddd: \(newAddress.ddd ?? ""). Região: \(newAddress.regiao ?? "") (\(newAddress.estado ?? ""))
+        \(newAddress.street ?? ""), \(newAddress.neighborhood ?? ""), \(newAddress.city ?? "") - \(newAddress.stateCode ?? "").
+        CEP: \(newAddress.zipCode ?? "")
+        ddd: \(newAddress.areaCode ?? ""). Região: \(newAddress.region ?? "") (\(newAddress.state ?? ""))
         """
         }
         return savedItem?.fullAddress ?? ""

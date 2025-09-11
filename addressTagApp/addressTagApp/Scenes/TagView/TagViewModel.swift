@@ -9,7 +9,11 @@ import Foundation
 
 final class TagViewModel {
     
-    private let dataManager = DataManager.shared
+    private let dataManager: DataManaging
+    
+    init(dataManager: DataManaging = DataManager.shared) {
+        self.dataManager = dataManager
+    }
     
     func generateFullAddressTextWith(newAddress: AddressModel?, savedItem: Address?) -> String {
         if let newAddress = newAddress {

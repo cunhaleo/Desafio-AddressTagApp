@@ -8,19 +8,25 @@
 import CoreData
 import UIKit
 
-final class AgendaFetchResultsControl {
+protocol FetchResultsControling {
+    func loadSavedData(filterText: String?)
+    func numberOfItems() -> Int
+    func item(at indexPath: IndexPath) -> Address?
+    var delegate: NSFetchedResultsControllerDelegate? { get set }
+}
+
+final class AgendaFetchResultsControl: FetchResultsControling {
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var fetchedResultsController: NSFetchedResultsController<Address>?
+    private var fetchedResultsController: NSFetchedResultsController<Address>?
     
     weak var delegate: NSFetchedResultsControllerDelegate?
     
-    func loadSavedData(filterText: String? = nil) {
+    func loadSavedData(filterText: String?) {
         if fetchedResultsController == nil {
             let request = Address.fetchRequest()
             let sort = NSSortDescriptor(key: "name", ascending: true)
             request.sortDescriptors = [sort]
-            request.fetchBatchSize = 20
             
             fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
                                                                   managedObjectContext: context,

@@ -10,20 +10,21 @@ import CoreData
 
 final class AgendaViewController: UIViewController {
     
-    private let viewModel: AgendaViewModel
+    private let viewModel: AgendaViewModeling
     private let tableView = UITableView()
     private let searchController = UISearchController()
-    private var agendaResultControl = AgendaFetchResultsControl()
+    private var agendaResultControl: FetchResultsControling
     
-    init(viewModel: AgendaViewModel = AgendaViewModel()) {
+    init(viewModel: AgendaViewModeling = AgendaViewModel(),
+         fetchResultControl: FetchResultsControling = AgendaFetchResultsControl()) {
         self.viewModel = viewModel
+        self.agendaResultControl = fetchResultControl
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     override func viewDidLoad() {
         title = "Meus endereços"
@@ -51,7 +52,7 @@ final class AgendaViewController: UIViewController {
     
     private func setupFetchResultControl() {
         agendaResultControl.delegate = self
-        agendaResultControl.loadSavedData()
+        agendaResultControl.loadSavedData(filterText: nil)
     }
 }
 
@@ -98,7 +99,7 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
 extension AgendaViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
-            agendaResultControl.loadSavedData()
+            agendaResultControl.loadSavedData(filterText: nil)
             return
         }
         agendaResultControl.loadSavedData(filterText: searchText)

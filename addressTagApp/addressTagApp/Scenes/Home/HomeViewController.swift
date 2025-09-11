@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
-    private let viewModel: HomeViewModel
+    private var viewModel: HomeViewModeling
     private var address: AddressModel
     private var currentCep: String = ""
     
@@ -23,7 +23,8 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var textFieldRegion: UITextField!
     @IBOutlet weak var textFieldNeighborhood: UITextField!
     
-    init(viewModel: HomeViewModel = HomeViewModel(), address: AddressModel = AddressModel.fixture()) {
+    init(viewModel: HomeViewModeling = HomeViewModel(),
+         address: AddressModel = AddressModel.fixture()) {
         self.viewModel = viewModel
         self.address = address
         super.init(nibName: nil, bundle: nil)

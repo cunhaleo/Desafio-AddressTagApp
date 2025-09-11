@@ -7,11 +7,17 @@
 
 import Foundation
 
-final class HomeViewModel {
+protocol HomeViewModeling {
+    func getAddressForCep(_ cep: String, completion: @escaping (() -> ()))
+    func retrieveAddress() -> AddressModel
+    var delegate: ProgressControlDelegate? { get set }
+}
+
+final class HomeViewModel: HomeViewModeling {
     private var address : AddressModel
     private let network: NetworkLayerProtocol
     private let serviceEndpoint: ServiceEndpointProtocol
-    var delegate: ProgressControlDelegate?
+    weak var delegate: ProgressControlDelegate?
     
     init(network: NetworkLayerProtocol = NetworkLayer(),
          serviceEndpoint: ServiceEndpointProtocol = ServiceEndpoint()) {

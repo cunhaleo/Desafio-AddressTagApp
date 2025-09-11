@@ -7,9 +7,19 @@
 
 import Foundation
 
-final class AgendaViewModel {
+protocol AgendaViewModeling {
+    func getAddressList() -> [Address]
+    func deleteItem(item: Address, completion: @escaping ((Result<(), Error>) -> Void))
+    func getAddressListContaining(_ searchText: String) -> [Address]
+}
+
+final class AgendaViewModel: AgendaViewModeling {
     
-    let dataManager = DataManager.shared
+    private let dataManager: DataManaging
+    
+    init(dataManager: DataManaging = DataManager.shared) {
+        self.dataManager = dataManager
+    }
     
     func getAddressList() -> [Address] {
         let addressList = dataManager.getAllItems()

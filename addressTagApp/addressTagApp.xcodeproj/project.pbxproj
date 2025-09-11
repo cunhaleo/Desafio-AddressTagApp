@@ -156,9 +156,9 @@
 		90910CDD2E6DA33600648567 /* Agenda */ = {
 			isa = PBXGroup;
 			children = (
-				90910CDE2E6DA35500648567 /* AgendaViewController.swift */,
-				90910CE02E6DAAB600648567 /* AgendaViewModel.swift */,
 				90FAE23E2E71EB0300620722 /* AgendaFetchResultsControl.swift */,
+				90910CE02E6DAAB600648567 /* AgendaViewModel.swift */,
+				90910CDE2E6DA35500648567 /* AgendaViewController.swift */,
 			);
 			path = Agenda;
 			sourceTree = "<group>";

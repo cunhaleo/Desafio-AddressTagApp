@@ -6,6 +6,7 @@
  ✅ Condutas:
 - Utilização de interfaces e injeção de dependências, reduzindo acoplamento e aumentando a testabilidade.
 - Classes com responsabilidades únicas, possibilitando reuso e facilitando a manutenção
+- Criação de uma Facade para implementação do CoreData interagir com a ViewController
 
 🔧 Ferramentas:
 - UIKit

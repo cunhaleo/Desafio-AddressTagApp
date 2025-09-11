@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
-    private let viewModel: HomeViewModel
+    private var viewModel: HomeViewModeling
     private var address: AddressModel
     private var currentCep: String = ""
     
@@ -23,7 +23,8 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var textFieldRegion: UITextField!
     @IBOutlet weak var textFieldNeighborhood: UITextField!
     
-    init(viewModel: HomeViewModel = HomeViewModel(), address: AddressModel = AddressModel.fixture()) {
+    init(viewModel: HomeViewModeling = HomeViewModel(),
+         address: AddressModel = AddressModel.fixture()) {
         self.viewModel = viewModel
         self.address = address
         super.init(nibName: nil, bundle: nil)
@@ -38,11 +39,8 @@ final class HomeViewController: UIViewController {
         viewModel.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationItem.title = "Novo"
-    }
-    
     private func setupUI() {
+        title = "Novo endereço"
         view.backgroundColor = ColorPallete.background
         buttonPrintTag.layer.cornerRadius = 15
         buttonPrintTag.backgroundColor = ColorPallete.primaryButtonColor
@@ -55,8 +53,8 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction func textFieldCepEditingDidEnd(_ sender: UITextField) {
-        searchAddressForCurrentCep {
-            self.fillTextFieldsFor(address: self.address)
+        searchAddressForCurrentCep { [weak self] in
+            self?.fillTextFieldsFor(address: self?.address)
         }
     }
     
@@ -66,22 +64,22 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateAddressModel() {
-        address.estado = textFieldState.text
-        address.regiao = textFieldRegion.text
-        address.localidade = textFieldLocation.text
-        address.logradouro = textFieldLogradouro.text
-        address.bairro = textFieldNeighborhood.text
+        address.state = textFieldState.text
+        address.region = textFieldRegion.text
+        address.city = textFieldLocation.text
+        address.street = textFieldLogradouro.text
+        address.neighborhood = textFieldNeighborhood.text
     }
     
     @IBAction func handleSearchAddress(_ sender: Any) {
-        searchAddressForCurrentCep() {
-            self.fillTextFieldsFor(address: self.address)
+        searchAddressForCurrentCep() { [weak self] in
+            self?.fillTextFieldsFor(address: self?.address)
         }
     }
     
     private func searchAddressForCurrentCep(completion: (() -> ())?) {
-        viewModel.getAddressForCep(currentCep) {
-            self.reloadAddress()
+        viewModel.getAddressForCep(currentCep) { [weak self] in
+            self?.reloadAddress()
             completion?()
         }
     }
@@ -93,11 +91,11 @@ final class HomeViewController: UIViewController {
     private func fillTextFieldsFor(address: AddressModel?) {
         guard let address = address else { return }
         DispatchQueue.main.async {
-            self.textFieldState.text = address.estado
-            self.textFieldRegion.text = address.regiao
-            self.textFieldLocation.text = address.localidade
-            self.textFieldLogradouro.text = address.logradouro
-            self.textFieldNeighborhood.text = address.bairro
+            self.textFieldState.text = address.state
+            self.textFieldRegion.text = address.region
+            self.textFieldLocation.text = address.city
+            self.textFieldLogradouro.text = address.street
+            self.textFieldNeighborhood.text = address.neighborhood
         }
     }
     

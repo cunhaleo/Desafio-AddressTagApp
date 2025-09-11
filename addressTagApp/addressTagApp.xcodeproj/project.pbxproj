@@ -30,6 +30,7 @@
 		90FAE2372E70559E00620722 /* ServiceEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FAE2362E70559E00620722 /* ServiceEndpoints.swift */; };
 		90FAE23B2E706E4000620722 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FAE23A2E706E4000620722 /* UIViewController+Extension.swift */; };
 		90FAE23D2E7075BB00620722 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FAE23C2E7075BB00620722 /* ProgressView.swift */; };
+		90FAE23F2E71EB0300620722 /* AgendaFetchResultsControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FAE23E2E71EB0300620722 /* AgendaFetchResultsControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		90FAE2362E70559E00620722 /* ServiceEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndpoints.swift; sourceTree = "<group>"; };
 		90FAE23A2E706E4000620722 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		90FAE23C2E7075BB00620722 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		90FAE23E2E71EB0300620722 /* AgendaFetchResultsControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFetchResultsControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,9 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				903AC0812E43E9E80092DEBA /* AppDelegate.swift */,
-				90FAE2392E706E0D00620722 /* ProgressView */,
-				90910CD32E6CCFAB00648567 /* CoreData */,
-				90910CA42E6C8EF800648567 /* Network */,
+				90FAE2402E7219B100620722 /* Commoms */,
 				90FAE2382E706DE300620722 /* Scenes */,
 				903AC08A2E43E9EB0092DEBA /* Assets.xcassets */,
 				90767E882E4E37890091BF62 /* AssetsManager.swift */,
@@ -156,8 +156,9 @@
 		90910CDD2E6DA33600648567 /* Agenda */ = {
 			isa = PBXGroup;
 			children = (
-				90910CDE2E6DA35500648567 /* AgendaViewController.swift */,
+				90FAE23E2E71EB0300620722 /* AgendaFetchResultsControl.swift */,
 				90910CE02E6DAAB600648567 /* AgendaViewModel.swift */,
+				90910CDE2E6DA35500648567 /* AgendaViewController.swift */,
 			);
 			path = Agenda;
 			sourceTree = "<group>";
@@ -180,6 +181,16 @@
 				90FAE23C2E7075BB00620722 /* ProgressView.swift */,
 			);
 			path = ProgressView;
+			sourceTree = "<group>";
+		};
+		90FAE2402E7219B100620722 /* Commoms */ = {
+			isa = PBXGroup;
+			children = (
+				90FAE2392E706E0D00620722 /* ProgressView */,
+				90910CD32E6CCFAB00648567 /* CoreData */,
+				90910CA42E6C8EF800648567 /* Network */,
+			);
+			path = Commoms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +284,7 @@
 				90910CA62E6CA19A00648567 /* DataManager.swift in Sources */,
 				90767E892E4E37890091BF62 /* AssetsManager.swift in Sources */,
 				90767E7F2E47E5FF0091BF62 /* HomeViewController.swift in Sources */,
+				90FAE23F2E71EB0300620722 /* AgendaFetchResultsControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

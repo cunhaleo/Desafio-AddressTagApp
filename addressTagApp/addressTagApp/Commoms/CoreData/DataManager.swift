@@ -8,21 +8,36 @@
 import UIKit
 import CoreData
 
-final class DataManager {
+protocol DataManaging {
+    func getAllItems() -> [Address]
+    func getItems(_ predicate: NSPredicate?) -> [Address]
+    func createItem(name: String,
+                    fullAddress: String,
+                    completion: @escaping (Result<(), Error>) -> Void)
+    func deleteItem(item: Address,
+                    completion: @escaping (Result<(), Error>) -> Void)
+    func updateItem(item: Address,
+                    newFullAddress: String,
+                    completion: @escaping (Result<(), Error>) -> Void)
+}
+
+final class DataManager: DataManaging {
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     static let shared = DataManager()
     
     func getAllItems() -> [Address] {
-        do {
-            let items = try context.fetch(Address.fetchRequest())
-            return items
-        }
-        catch {
-            // error
-        }
-        return []
+        guard let items = try? context.fetch(Address.fetchRequest()) else { return [] }
+        return items
+    }
+    
+    func getItems(_ predicate: NSPredicate?) -> [Address] {
+        let request: NSFetchRequest<Address> = Address.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        request.predicate = predicate
+        guard let items = try? context.fetch(request) else { return [] }
+        return items
     }
     
     func createItem(name: String,

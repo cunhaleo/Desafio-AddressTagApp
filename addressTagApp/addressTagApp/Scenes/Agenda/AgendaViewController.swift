@@ -6,14 +6,19 @@
 //
 
 import UIKit
+import CoreData
 
 final class AgendaViewController: UIViewController {
     
-    let viewModel: AgendaViewModel
-    var addressList = [Address]()
+    private let viewModel: AgendaViewModeling
+    private let tableView = UITableView()
+    private let searchController = UISearchController()
+    private var agendaResultControl: FetchResultsControling
     
-    init(viewModel: AgendaViewModel = AgendaViewModel()) {
+    init(viewModel: AgendaViewModeling = AgendaViewModel(),
+         fetchResultControl: FetchResultsControling = AgendaFetchResultsControl()) {
         self.viewModel = viewModel
+        self.agendaResultControl = fetchResultControl
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,18 +26,11 @@ final class AgendaViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let tableView: UITableView = {
-        let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        return table
-    }()
-    
     override func viewDidLoad() {
+        title = "Meus endereços"
+        setupFetchResultControl()
         setupTableView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        loadAddressList()
+        setupSearchController()
     }
     
     private func setupTableView() {
@@ -40,31 +38,38 @@ final class AgendaViewController: UIViewController {
         tableView.dataSource = self
         tableView.frame = view.bounds
         tableView.backgroundColor = ColorPallete.background
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         view.addSubview(tableView)
     }
     
-    private func loadAddressList() {
-        self.addressList = viewModel.getAddressList()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Procurar"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    private func setupFetchResultControl() {
+        agendaResultControl.delegate = self
+        agendaResultControl.loadSavedData(filterText: nil)
     }
 }
 
 extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        addressList.count
+        agendaResultControl.numberOfItems()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let itemName = addressList[indexPath.row].name
+        let itemName = agendaResultControl.item(at: indexPath)?.name
         cell.textLabel?.text = itemName
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = addressList[indexPath.row]
+        let item = agendaResultControl.item(at: indexPath)
         let tagView = TagViewController(tagType: .loadFromDatabase, savedItem: item)
         self.navigationController?.pushViewController(tagView, animated: true)
     }
@@ -74,7 +79,7 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
                    forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            let item = addressList[indexPath.row]
+            guard let item = agendaResultControl.item(at: indexPath) else { return }
             viewModel.deleteItem(item: item) { [weak self] result in
                 var alert = UIAlertController()
                 switch result {
@@ -87,7 +92,24 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
                     self?.present(alert, animated: true)
                 }
             }
-            loadAddressList()
         }
+    }
+}
+
+extension AgendaViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
+            agendaResultControl.loadSavedData(filterText: nil)
+            return
+        }
+        agendaResultControl.loadSavedData(filterText: searchText)
+        return
+    }
+}
+
+extension AgendaViewController: NSFetchedResultsControllerDelegate {
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
+        tableView.reloadData()
     }
 }

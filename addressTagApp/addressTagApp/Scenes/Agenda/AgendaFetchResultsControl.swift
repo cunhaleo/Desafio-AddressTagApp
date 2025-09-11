@@ -69,6 +69,14 @@ final class AgendaFetchResultsControl: NSObject, NSFetchedResultsControllerDeleg
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         shouldUpdate?()
     }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                        didChange anObject: Any,
+                        at indexPath: IndexPath?,
+                        for type: NSFetchedResultsChangeType,
+                        newIndexPath: IndexPath?) {
+    shouldUpdate?()
+        }
 }
 
-
+   

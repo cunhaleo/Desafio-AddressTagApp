@@ -32,6 +32,10 @@ final class AgendaViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        try? agendaResultControl.setupFetchedResultsController()
+    }
+    
     private func bindEvents() {
         agendaResultControl.shouldUpdate = { [weak self] in
             self?.tableView.reloadData()

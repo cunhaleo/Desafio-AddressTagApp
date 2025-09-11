@@ -6,13 +6,16 @@
 //
 
 import UIKit
+import CoreData
 
 final class AgendaViewController: UIViewController {
     
     private let viewModel: AgendaViewModel
     private let tableView = UITableView()
     private let searchController = UISearchController()
-    private var agendaResultControl = AgendaFetchResultsControl()
+    //    private var agendaResultControl = AgendaFetchResultsControl()
+    var fetchedResultsController: NSFetchedResultsController<Address>?
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     init(viewModel: AgendaViewModel = AgendaViewModel()) {
         self.viewModel = viewModel
@@ -21,6 +24,37 @@ final class AgendaViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func loadSavedData(filterText: String? = nil) {
+        if fetchedResultsController == nil {
+            let request = Address.fetchRequest()
+            let sort = NSSortDescriptor(key: "name", ascending: true)
+            request.sortDescriptors = [sort]
+            request.fetchBatchSize = 20
+            
+            fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
+                                                                  managedObjectContext: context,
+                                                                  sectionNameKeyPath: nil,
+                                                                  cacheName: nil)
+            fetchedResultsController?.delegate = self
+        }
+        
+        var predicates: [NSPredicate] = []
+        if let filterText = filterText, !filterText.isEmpty {
+            predicates.append(NSPredicate(format: "name CONTAINS[cd] %@", filterText))
+            predicates.append(NSPredicate(format: "fullAddress CONTAINS[cd] %@", filterText))
+        }
+        let addressPredicate = predicates.isEmpty ? nil : NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
+        
+        fetchedResultsController?.fetchRequest.predicate = addressPredicate
+        
+        do {
+            try fetchedResultsController?.performFetch()
+            tableView.reloadData()
+        } catch {
+            print("Fetch failed")
+        }
     }
     
     override func viewDidLoad() {
@@ -33,13 +67,13 @@ final class AgendaViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        try? agendaResultControl.setupFetchedResultsController()
+        //        try? agendaResultControl.setupFetchedResultsController()
     }
     
     private func bindEvents() {
-        agendaResultControl.shouldUpdate = { [weak self] in
-            self?.tableView.reloadData()
-        }
+        //        agendaResultControl.shouldUpdate = { [weak self] in
+        ////            self?.tableView.reloadData()
+        //        }
     }
     
     private func setupTableView() {
@@ -60,29 +94,25 @@ final class AgendaViewController: UIViewController {
     }
     
     private func setupFetchResultControl() {
-        do {
-            try agendaResultControl.setupFetchedResultsController()
-        } catch {
-            let errorAlert = DatabaseFeedback.alertDatabaseFailed(type: .update)
-            present(errorAlert, animated: true)
-        }
+        loadSavedData()
     }
 }
 
 extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        agendaResultControl.numberOfItems() 
+        //        agendaResultControl.numberOfItems()
+        fetchedResultsController?.fetchedObjects?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let itemName = agendaResultControl.item(at: indexPath)?.name ?? ""
+        let itemName = fetchedResultsController?.fetchedObjects?[indexPath.row].name
         cell.textLabel?.text = itemName
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = agendaResultControl.item(at: indexPath)
+        let item = fetchedResultsController?.fetchedObjects?[indexPath.row]
         let tagView = TagViewController(tagType: .loadFromDatabase, savedItem: item)
         self.navigationController?.pushViewController(tagView, animated: true)
     }
@@ -92,7 +122,7 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
                    forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            guard let item = agendaResultControl.item(at: indexPath) else { return }
+            guard let item = fetchedResultsController?.fetchedObjects?[indexPath.row] else { return }
             viewModel.deleteItem(item: item) { [weak self] result in
                 var alert = UIAlertController()
                 switch result {
@@ -106,29 +136,23 @@ extension AgendaViewController: UITableViewDataSource, UITableViewDelegate {
                 }
             }
         }
-        try? agendaResultControl.setupFetchedResultsController()
     }
 }
 
 extension AgendaViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
-            do {
-                try agendaResultControl.setupFetchedResultsController()
-            }
-            catch {
-                let errorAlert = DatabaseFeedback.alertDatabaseFailed(type: .update)
-                present(errorAlert, animated: true)
-            }
+            loadSavedData()
             return
         }
-        do {
-            try agendaResultControl.setupFetchedResultsController(searchText: searchText)
-        }
-        catch {
-            let errorAlert = DatabaseFeedback.alertDatabaseFailed(type: .update)
-            present(errorAlert, animated: true)
-        }
+        loadSavedData(filterText: searchText)
         return
+    }
+}
+
+extension AgendaViewController: NSFetchedResultsControllerDelegate {
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        tableView.reloadData()
     }
 }

@@ -12,7 +12,6 @@ final class AgendaFetchResultsControl {
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var fetchedResultsController: NSFetchedResultsController<Address>?
-    var shouldUpdate: (() -> Void)?
     
     weak var delegate: NSFetchedResultsControllerDelegate?
     
@@ -41,7 +40,6 @@ final class AgendaFetchResultsControl {
         
         do {
             try fetchedResultsController?.performFetch()
-            shouldUpdate?()
         } catch {
             print("Fetch failed")
         }
